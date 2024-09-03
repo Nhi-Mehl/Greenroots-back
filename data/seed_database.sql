@@ -3,12 +3,12 @@ BEGIN;
 INSERT INTO "project"
     ("id", "name", "description", "status", "city", "country", "continent")
 VALUES 
-(1, 'Afrique forever', 'Le projet de reforestation en Afrique vise à restaurer les forêts tropicales et les savanes dégradées, tout en soutenant les communautés locales par des programmes d''agroforesterie durable. Cette initiative contribue à lutter contre la désertification et à préserver la biodiversité unique du continent.', 'En cours', 'Bandundu', 'Congo', 'Afrique'),
-(2, 'Asie incontournable', 'En Asie, ce projet de reforestation se concentre sur la revitalisation des forêts dégradées des régions tropicales et tempérées, notamment en plantant des espèces indigènes. Il soutient également les pratiques agricoles durables pour réduire la pression sur les écosystèmes forestiers.', 'A venir', 'Kanchanaburi', 'Thaïlande', 'Asie'),
-(3, 'Le vieux continent', 'Le projet européen de reforestation cherche à restaurer les forêts anciennes et à créer de nouveaux espaces boisés pour améliorer la biodiversité et atténuer les effets du changement climatique. Il met l''accent sur l''intégration des forêts dans les paysages ruraux et urbains.', 'Terminé', 'Sarajevo', 'Serbie', 'Europe'),
-(4, 'Le nouveau continent', 'Ce projet de reforestation en Amérique du Nord vise à restaurer les écosystèmes forestiers endommagés par les incendies et l''exploitation excessive. Il inclut également des initiatives pour protéger les habitats naturels de la faune et renforcer la résilience des forêts face aux changements climatiques.', 'A venir', 'Les trois rivières', 'Canada', 'Amérique du Nord'),
-(5, 'Amazônia verde', 'Le projet en Amérique du Sud se concentre sur la reforestation des zones dégradées de la forêt amazonienne et d''autres écosystèmes critiques. En plus de restaurer la couverture forestière, il vise à protéger les ressources en eau et à soutenir les populations autochtones dans la gestion durable des forêts.', 'En cours', 'Manaus', 'Brésil', 'Amérique du Sud'),
-(6, 'La canopée pacifique', 'En Océanie, ce projet de reforestation cible les forêts tropicales et subtropicales, ainsi que les zones côtières vulnérables. Il vise à restaurer la biodiversité unique de la région, tout en soutenant les communautés locales dans la gestion durable des terres et la protection contre l''érosion côtière.', 'En cours', 'Brisbane', 'Australie', 'Océanie');
+    (1, 'Afrique forever', 'Le projet de reforestation en Afrique vise à restaurer les forêts tropicales et les savanes dégradées, tout en soutenant les communautés locales par des programmes d''agroforesterie durable. Cette initiative contribue à lutter contre la désertification et à préserver la biodiversité unique du continent.', 'En cours', 'Bandundu', 'Congo', 'Afrique'),
+    (2, 'Asie incontournable', 'En Asie, ce projet de reforestation se concentre sur la revitalisation des forêts dégradées des régions tropicales et tempérées, notamment en plantant des espèces indigènes. Il soutient également les pratiques agricoles durables pour réduire la pression sur les écosystèmes forestiers.', 'A venir', 'Kanchanaburi', 'Thaïlande', 'Asie'),
+    (3, 'Le vieux continent', 'Le projet européen de reforestation cherche à restaurer les forêts anciennes et à créer de nouveaux espaces boisés pour améliorer la biodiversité et atténuer les effets du changement climatique. Il met l''accent sur l''intégration des forêts dans les paysages ruraux et urbains.', 'Terminé', 'Sarajevo', 'Serbie', 'Europe'),
+    (4, 'Le nouveau continent', 'Ce projet de reforestation en Amérique du Nord vise à restaurer les écosystèmes forestiers endommagés par les incendies et l''exploitation excessive. Il inclut également des initiatives pour protéger les habitats naturels de la faune et renforcer la résilience des forêts face aux changements climatiques.', 'A venir', 'Les trois rivières', 'Canada', 'Amérique du Nord'),
+    (5, 'Amazônia verde', 'Le projet en Amérique du Sud se concentre sur la reforestation des zones dégradées de la forêt amazonienne et d''autres écosystèmes critiques. En plus de restaurer la couverture forestière, il vise à protéger les ressources en eau et à soutenir les populations autochtones dans la gestion durable des forêts.', 'En cours', 'Manaus', 'Brésil', 'Amérique du Sud'),
+    (6, 'La canopée pacifique', 'En Océanie, ce projet de reforestation cible les forêts tropicales et subtropicales, ainsi que les zones côtières vulnérables. Il vise à restaurer la biodiversité unique de la région, tout en soutenant les communautés locales dans la gestion durable des terres et la protection contre l''érosion côtière.', 'En cours', 'Brisbane', 'Australie', 'Océanie');
 
 INSERT INTO "species"
     ("id", "name", "scientific_name", "description", "price", "picture", "co2_compensation")
@@ -28,7 +28,7 @@ VALUES
     (14, 'Sequoia géant', 'Sequoiadendron giganteum', 'L''arbre le plus volumineux du monde, emblématique de la Californie.', 50.00, 12, 10),
     (15, 'Baobab', 'Adansonia digitata', 'Arbre emblématique de l''Afrique, connu pour sa longévité et sa capacité à stocker l''eau.', 39.20, 13, 8);
 
-INSERT INTO "tree_project"
+INSERT INTO "project_tree"
     ("id", "basic_quantity", "current_quantity", "project_id", "species_id")
 VALUES 
     (1, 100000, 50000, 1, 1),
@@ -70,13 +70,13 @@ VALUES
 INSERT INTO "order"
     ("id", "amount", "date", "user_id")
 VALUES 
-(1, 636,'2024-06-03 14:30:00+02:00', 1);
+    (1, 636,'2024-06-03 14:30:00+02:00', 1);
 
 INSERT INTO "order_line"
-    ("id", "quantity", "amount", "tree_project_id", "order_id")
+    ("id", "quantity", "amount", "project_tree_id", "order_id")
 VALUES 
-(1, 10, 255, 7, 1),
-(2, 10, 381, 9, 1);
+    (1, 10, 255, 7, 1),
+    (2, 10, 381, 9, 1);
 
 
 COMMIT; 
