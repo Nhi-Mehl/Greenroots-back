@@ -21,6 +21,27 @@ const projectTreeController = {
         res.json(projectTrees);
         console.log(projectTrees);
     },
+    async getOne(req, res) {
+        const id = req.params.id;
+
+        const projectTree = await Project_tree.findByPk(id, {
+            include: [
+                {
+                    association: 'species',
+                    /*include: [
+                        {
+                            association: 'species'
+                        }
+                    ]*/
+                }
+            ],
+            // order: [['name', 'ASC']],
+        });
+        if (!projectTree) {
+            throw new NotFoundError('Project tree not found. Please verify the provided ID.');
+        }
+        res.json(projectTree);
+    },
 
 };
 

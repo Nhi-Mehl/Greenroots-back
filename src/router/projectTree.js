@@ -6,6 +6,7 @@ const projectTreeRouter = Router();
 
 // route qui permet de récupérer tous les projets du site
 projectTreeRouter.get('/', cw(projectTreeController.getAll));
+projectTreeRouter.get('/:id', cw(projectTreeController.getOne));
 
 
 export default projectTreeRouter;
