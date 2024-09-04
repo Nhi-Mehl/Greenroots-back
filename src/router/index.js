@@ -1,18 +1,21 @@
 import { Router } from 'express';
-import orderRouter from './order';
-import projectTreeRouter from './projectTree';
-import projectRouter from './project';
-import speciesRouter from './species';
-import userRouter from './user';
+import orderRouter from './order.js';
+import projectTreeRouter from './projectTree.js';
+import projectRouter from './project.js';
+import speciesRouter from './species.js';
+import userRouter from './user.js';
 
 const router = Router();
 
 
-router.use('/api/v1/projects', projectRouter);
-router.use('/api/v1/orders', orderRouter);
-router.use('/api/v1/project_trees', projectTreeRouter);
-router.use('/api/v1/species', speciesRouter);
-router.use('/api/v1/users', userRouter);
-router.use('/api/v1/project_trees', projectTreeRouter);
+// Middlewares de toutes les routes
+
+
+router.use('/projects', projectRouter);
+router.use('/orders', orderRouter);
+router.use('/project_trees', projectTreeRouter);
+router.use('/species', speciesRouter);
+router.use('/users', userRouter);
+router.use('/project_trees', projectTreeRouter);
 
 export default router;

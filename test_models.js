@@ -2,19 +2,6 @@ import { Project } from './src/models/index.js';
 
 
 
-/*(async () => {
-    console.log(
-        JSON.stringify(
-            await Project.findAll({
-
-            }
-            ),
-            null,
-            2,
-        ),
-    );
-})();*/
-
 
 (async () => {
     const order = await Project.findAll({
