@@ -41,7 +41,6 @@ const projectController = {
       
       async getThreeRandomProjects(req, res) {
         const threeRandomProjects = await Project.findAll({
-          //order: [['name', 'ASC']],
           order: Sequelize.literal('RANDOM()'),
           limit: 3
         });
