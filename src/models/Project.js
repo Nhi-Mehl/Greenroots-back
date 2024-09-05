@@ -13,6 +13,10 @@ Project.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        picture: {
+            type: DataTypes.INTEGER,
+            allowNull:false
+        },
         status: {
             type: DataTypes.STRING,
             allowNull: false,
