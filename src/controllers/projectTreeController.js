@@ -14,13 +14,22 @@ const projectTreeSchema = z.object({
 
 const projectTreeController = {
 
-    async getAll(req, res) {
+    async getOneProjectTrees(req, res) {
         const projectTrees = await Project_tree.findAll({
             order: [['id', 'ASC']],
+            where: {
+                project_id: req.params.project_id,
+            },
+            include: [
+                {
+                    association: 'species',
+                }
+            ],
         });
         res.json(projectTrees);
         console.log(projectTrees);
     },
+
     async getOne(req, res) {
         const id = req.params.id;
 
