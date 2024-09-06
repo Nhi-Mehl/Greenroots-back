@@ -10,10 +10,6 @@ projectRouter.get('/', cw(projectController.getAll));
 projectRouter.get('/highlights', cw(projectController.getThreeRandomProjects));
 // permet qui permet de récupérer un seul projet en fonction de son ID
 projectRouter.get('/:id', cw(projectController.getOne));
-//permet de récupérer les arbres d'un projet en fonction de l'ID de ce projet
-projectRouter.get('/:id/project_trees', cw(projectController.getOneProjectTrees));
-
-
 
 
 export default projectRouter;

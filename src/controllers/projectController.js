@@ -46,30 +46,6 @@ const projectController = {
     res.json(threeRandomProjects);
   },
 
-
-  // controller pour récupérer un seul projet en fonction de son id en incluant les arbres et les espèces du projet
-
-
-  async getOneProjectTrees(req, res) {
-    const { id } = req.params;
-
-    const oneProject = await Project.findByPk(id, {
-      include: [
-        {
-          association: 'project_trees',
-          include: [
-            {
-              association: 'species'
-            }
-          ]
-        }
-      ],
-      // order: [['name', 'ASC']],
-    });
-    res.json(oneProject);
-    console.log(oneProject);
-  },
-
 };
 
 export default projectController;
