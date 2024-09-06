@@ -16,6 +16,5 @@ router.use('/orders', orderRouter);
 router.use('/project_trees', projectTreeRouter);
 router.use('/species', speciesRouter);
 router.use('/users', userRouter);
-router.use('/project_trees', projectTreeRouter);
 
 export default router;
