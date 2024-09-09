@@ -1,10 +1,9 @@
 import express from 'express';
-import router from './src/router/index.js';
+import router from './src/router/indexRouter.js';
 import errorHandler from './src/middlewares/errorHandler.js';
 import cors from 'cors';
 
 const app = express();
-
 
 app.use(cors('*'));
 
