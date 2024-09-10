@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import orderRouter from './order.js';
-import projectTreeRouter from './projectTree.js';
-import projectRouter from './project.js';
-import speciesRouter from './species.js';
-import userRouter from './user.js';
+import orderRouter from './orderRouter.js';
+import projectTreeRouter from './projectTreeRouter.js';
+import projectRouter from './projectRouter.js';
+import speciesRouter from './speciesRouter.js';
+import userRouter from './userRouter.js';
+import authRouter from './authRouter.js';
 
 const router = Router();
 
@@ -16,5 +17,6 @@ router.use('/orders', orderRouter);
 router.use('/project_trees', projectTreeRouter);
 router.use('/species', speciesRouter);
 router.use('/users', userRouter);
+router.use('/auth', authRouter);
 
 export default router;
