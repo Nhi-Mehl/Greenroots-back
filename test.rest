@@ -2,16 +2,26 @@ POST http://localhost:3000/api/auth/register
 content-type: application/json
 
 {
-  "email": "abc@gmail.com",
-  "password": "abc123",
+  "email": "testIgor3@gmail.com",
+  "password": "abc123eeze",
   "first_name": "Les Grands",
   "last_name": "AAA",
-  "role": "aaaa",
-  "confirmation": "abc123",
-  "address": "123 rue église",
+  "confirmation": "abc123eeze",
+  
   "zip_code": "75001",
   "country": "france",
   "city": "Paris",
-  "phone_number": "0173004"
+  "phone_number": "0173004567"
 }
 
+###
+POST http://localhost:3000/api/auth/login
+content-type: application/json
+
+{
+  "email": "testIgor2@gmail.com",
+  "password": "abc123eeze"
+}
+
+
+// commentaire pour commit
