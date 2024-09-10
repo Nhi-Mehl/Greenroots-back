@@ -16,22 +16,22 @@ import { User } from '../models/index.js';
 const userSchema = z.object({
   email: z.string().email('Doit être un email valide'),
   password: z.string().min(6),
-  first_name: z.string('Doit être une chaîne de caractères'),
-  last_name: z.string('Doit être une chaîne de caractères'),
-  role: z.string('Doit être une chaîne de caractères'),
   confirmation: z.string().min(6),
-  address: z.string('Doit être une chaîne de caractères'),
-  zip_code: z.string('Doit être une chaîne de caractères'),
-  country: z.string('Doit être une chaîne de caractères'),
-  city: z.string('Doit être une chaîne de caractères'),
-  phone_number: z.string('Doit être une chaîne de numéros')
+  first_name: z.string('Doit être une chaîne de caractères').min(1),
+  last_name: z.string('Doit être une chaîne de caractères').min(1),
+  role: z.string('Doit être une chaîne de caractères').optional(),
+  address: z.string('Doit être une chaîne de caractères').min(1),
+  zip_code: z.string('Doit être une chaîne de caractères').min(1),
+  country: z.string('Doit être une chaîne de caractères').min(1),
+  city: z.string('Doit être une chaîne de caractères').min(1),
+  phone_number: z.string('Doit être une chaîne de numéros').min(10).max(10)
 });
 
 
 const authController = {
   async create(req, res) {
     // Using safeParse so we can handle the error
-    const result = userSchema.safeParse(req.body);
+    const result = userSchema.partial().safeParse(req.body);
     console.log(result);
 
     // If the result is not successful, we respond with a 400 status code
