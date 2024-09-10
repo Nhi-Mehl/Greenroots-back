@@ -2,6 +2,7 @@ import { z } from 'zod';
 import Scrypt from '../utils/scrypt.js';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/index.js';
+import { NotFoundError } from '../utils/errors.js';
 
 
 
@@ -34,7 +35,7 @@ const authController = {
     const result = userSchema.partial().safeParse(req.body);
     console.log(result);
 
-    // If the result is not successful, we respond with a 400 status code
+    // Si le resultat n'est pas correct, on renvoie une erreur 400
     if (!result.success) {
       return res.status(400).json(result.error);
     }
@@ -57,9 +58,8 @@ const authController = {
       return res.status(409).json({ message: 'User already exists' });
     }
 
-    try {
       // Hash the password
-      const hashedPassword = await Scrypt.hash(password);
+      const hashedPassword = Scrypt.hash(password);
 
       // Create the user
       const user = await User.create({ email, password: hashedPassword, first_name, last_name, role, address, zip_code, country, city, phone_number });
@@ -71,12 +71,54 @@ const authController = {
         message: 'User created. Please login to get your access token.',
       });
 
-    } catch (error) {
-      // If an error occurs, we respond with a 500 status code
-      return res.status(500).json({ message: error.message });
+  },
+  
+  async login(req, res) {
+
+    const result = userSchema.partial().safeParse(req.body); 
+    console.log(result);
+
+     // Si le resultat n'est pas correct, on renvoie une erreur 400
+     if (!result.success) {
+      return res.status(400).json(result.error);
     }
 
-  }
+    // Ensuite on récupère la data du résultat
+    const { email, password } = result.data;
+
+
+      // Je vais récupérer depuis ma base de données l'utilisateur qui a l'email donné
+      const foundUser = await User.findOne({
+        where: {
+          email: email,
+        }
+      });
+
+      if (!foundUser) {
+        throw new NotFoundError('User not found');
+
+      }
+
+ // Si on a un utilisateur, on teste si le mot de passe est valide
+      const validPwd = Scrypt.verify(password, foundUser.password);
+
+      if (!validPwd) {
+        throw new NotFoundError('Invalid password');
+      }
+
+
+       // On crée un token d'accès pour que l'utilisateur puisse accéder aux routes protégées      
+       const accessToken = jwt.sign({ id: foundUser.id }, process.env.JWT_SECRET, {
+        expiresIn: '1h',
+    });
+
+     // Respond with the access token
+     return res.json({ accessToken });
+  
+  
+  
+},
 }
+
 
 export default authController;
