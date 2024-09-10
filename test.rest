@@ -1,4 +1,3 @@
-
 POST http://localhost:3000/api/auth/register
 content-type: application/json
 
@@ -14,4 +13,14 @@ content-type: application/json
   "city": "Paris",
   "phone_number": "0173004567"
 }
+
+###
+POST http://localhost:3000/api/auth/login
+content-type: application/json
+
+{
+  "email": "testIgor2@gmail.com",
+  "password": "abc123eeze"
+}
+
 
