@@ -5,15 +5,6 @@ import { User } from '../models/index.js';
 import { NotFoundError } from '../utils/errors.js';
 
 
-
-// const passwordSchema = z
-//   .string()
-//   .min(8, 'Le mot de passe doit contenir au moins 8 caractères')
-//   .regex(/[0-9]/, 'Le mot de passe doit contenir au moins un chiffre')
-//   .regex(/[A-Z]/, 'Le mot de passe doit contenir au moins une majuscule')
-//   .regex(/[a-z]/, 'Le mot de passe doit contenir au moins une minuscule');
-
-
 const userSchema = z.object({
   email: z.string().email('Doit être un email valide'),
   password: z.string().min(6),
@@ -31,7 +22,7 @@ const userSchema = z.object({
 
 const authController = {
   async create(req, res) {
-    // Using safeParse so we can handle the error
+    // On utilise safeParse pour gérer l'erreur
     const result = userSchema.partial().safeParse(req.body);
     console.log(result);
 
@@ -40,7 +31,7 @@ const authController = {
       return res.status(400).json(result.error);
     }
 
-    // Else we get data from the result
+    // Sinon on récupère la data du résultat
     const { email, password, first_name, last_name, role, confirmation, address, zip_code, country, city, phone_number } = result.data;
 
     // Ici je vais vérifier que le mot de passe et la confirmation sont les mêmes
@@ -50,23 +41,23 @@ const authController = {
       });
     }
 
-    // Check if the user already exists
+    // On vérifie si l'utilisateur existe déjà
     const userExists = await User.findOne({ where: { email } });
 
-    // If the user already exists, we respond with a 409 status code
+    // Si l'utilisateur existe déjà, on répond avec une erreur 409
     if (userExists) {
       return res.status(409).json({ message: 'User already exists' });
     }
 
-      // Hash the password
+      // On hâche le mot de passe
       const hashedPassword = Scrypt.hash(password);
 
-      // Create the user
+      // On crée l'utilisateur
       const user = await User.create({ email, password: hashedPassword, first_name, last_name, role, address, zip_code, country, city, phone_number });
 
       delete user.password;
 
-      // Respond with the user
+      // On renvoie un message de confirmation de la création de l'utilisateur
       return res.status(201).json({
         message: 'User created. Please login to get your access token.',
       });
@@ -112,7 +103,7 @@ const authController = {
         expiresIn: '1h',
     });
 
-     // Respond with the access token
+     // On répond avec un token d'accès
      return res.json({ accessToken });
   
   
