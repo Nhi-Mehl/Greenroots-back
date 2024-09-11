@@ -7,6 +7,6 @@ const userRouter = Router();
 
 
 // Permet de récupérer les informations personnelles lorsque l'utilisateurs est sur son compte
-userRouter.get('/:id', isLoggedIn, userController.getOne);
+userRouter.get('/:id', isLoggedIn, cw(userController.getOne));
 
 export default userRouter;
