@@ -1,27 +1,42 @@
-POST http://localhost:3000/api/auth/register
-content-type: application/json
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
 
 {
-  "email": "testIgor3@gmail.com",
-  "password": "abc123eeze",
+  "email": "testIgorMethodePUT@gmail.com",
+  "password": "testPUT",
   "first_name": "Les Grands",
   "last_name": "AAA",
-  "confirmation": "abc123eeze",
-  
+  "confirmation": "testPUT",
   "zip_code": "75001",
   "country": "france",
   "city": "Paris",
   "phone_number": "0173004567"
 }
 
-###
-POST http://localhost:3000/api/auth/login
+
+
+
+
+
+
+PUT http://localhost:3000/api/users/14
+Authorisation: Bearer OurSuperLongRandomSecretToSignOurJWTgre5ezg4jyt5j4ui64gn56bd4sfs5qe4erg5t5yjh46yu6knsw4q
 content-type: application/json
 
 {
-  "email": "testIgor2@gmail.com",
-  "password": "abc123eeze"
+  "email": "testIgorPUT@gmail.com",
+  "password": "abc123eeze",
+  "first_name": "Les Grands",
+  "last_name": "AAA",
+  "confirmation": "abc123eeze",
+  "zip_code": "75001",
+  "country": "france",
+  "city": "Paris",
+  "phone_number": "0173004567"
 }
 
 
+
 // commentaire pour commit
+
+
