@@ -9,6 +9,10 @@ const orderController = {
         });
         res.json(orders);
     },
+
+    async getOneLines(req, res) {
+
+    }
 };
 
 export default orderController;

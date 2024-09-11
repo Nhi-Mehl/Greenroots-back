@@ -5,6 +5,7 @@ import projectRouter from './projectRouter.js';
 import speciesRouter from './speciesRouter.js';
 import userRouter from './userRouter.js';
 import authRouter from './authRouter.js';
+import orderLineRouter from './orderLineRouter.js';
 
 const router = Router();
 
@@ -18,5 +19,6 @@ router.use('/project_trees', projectTreeRouter);
 router.use('/species', speciesRouter);
 router.use('/users', userRouter);
 router.use('/auth', authRouter);
+router.use('/order_line', orderLineRouter);
 
 export default router;
