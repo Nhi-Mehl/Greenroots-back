@@ -1,34 +1,15 @@
-POST http://localhost:3000/api/auth/login
-Content-Type: application/json
 
-{
-  "email": "testIgorMethodePUT@gmail.com",
-  "password": "testPUT",
-  "first_name": "Les Grands",
-  "last_name": "AAA",
-  "confirmation": "testPUT",
-  "zip_code": "75001",
-  "country": "france",
-  "city": "Paris",
-  "phone_number": "0173004567"
-}
-
-
-
-
-
-
-
-PUT http://localhost:3000/api/users/14
-Authorisation: Bearer OurSuperLongRandomSecretToSignOurJWTgre5ezg4jyt5j4ui64gn56bd4sfs5qe4erg5t5yjh46yu6knsw4q
+PUT http://localhost:3000/api/auth/register
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsImlhdCI6MTcyNjA1ODU0OCwiZXhwIjoxNzI2MDYyMTQ4fQ.5p9DJpT7DroKlFK3SnSI5EVfPvXt1Z17GckogXD1gXA
 content-type: application/json
 
 {
-  "email": "testIgorPUT@gmail.com",
+  "email": "testIgor3@gmail.com",
   "password": "abc123eeze",
   "first_name": "Les Grands",
   "last_name": "AAA",
   "confirmation": "abc123eeze",
+  "adress": "4 Rue des boulets",
   "zip_code": "75001",
   "country": "france",
   "city": "Paris",
@@ -37,6 +18,15 @@ content-type: application/json
 
 
 
-// commentaire pour commit
+
+
+
+
+
+
+
+
+
+
 
 
