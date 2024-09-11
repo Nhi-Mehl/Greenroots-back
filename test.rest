@@ -1,5 +1,5 @@
 
-PUT http://localhost:3000/api/auth/register
+PUT http://localhost:3000/api/users/15
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsImlhdCI6MTcyNjA1ODU0OCwiZXhwIjoxNzI2MDYyMTQ4fQ.5p9DJpT7DroKlFK3SnSI5EVfPvXt1Z17GckogXD1gXA
 content-type: application/json
 
@@ -9,7 +9,7 @@ content-type: application/json
   "first_name": "Les Grands",
   "last_name": "AAA",
   "confirmation": "abc123eeze",
-  "adress": "4 Rue des boulets",
+  "address": "4 Rue des boulets",
   "zip_code": "75001",
   "country": "france",
   "city": "Paris",
