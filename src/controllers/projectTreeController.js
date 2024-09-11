@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { Project_tree } from '../models/index.js';
 import { NotFoundError } from '../utils/errors.js';
+import sequelize from '../database/client.js';
 
 const projectTreeSchema = z.object({
     name: z.string().min(1),
@@ -37,19 +38,25 @@ const projectTreeController = {
             include: [
                 {
                     association: 'species',
-                    /*include: [
-                        {
-                            association: 'species'
-                        }
-                    ]*/
                 }
             ],
-            // order: [['name', 'ASC']],
         });
         if (!projectTree) {
             throw new NotFoundError('Project tree not found. Please verify the provided ID.');
         }
         res.json(projectTree);
+    },
+
+    async plantedTreesCounter(req, res) {
+
+        // On exécute avec Sequelize la requête calculant le total d'arbres plantés
+        const [rows] = await sequelize.query(`
+        SELECT SUM(basic_quantity - current_quantity) AS totalDifference
+        FROM project_tree;
+      `);
+
+        // On affiche uniquement la valeur numérique de la première ligne du tableau dans la réponse JSON
+        res.json(Number(rows[0].totaldifference));
     },
 
 };
