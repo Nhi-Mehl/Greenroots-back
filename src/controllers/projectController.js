@@ -46,6 +46,17 @@ const projectController = {
     res.json(threeRandomProjects);
   },
 
+  // fonction pour calculer le nombre de projets terminés
+  async countAllProducts(req, res) {
+    const totalProjects = await Project.count({
+      where: {
+        status: 'Terminé',
+      }
+    });
+    console.log(`Total number of projects: ${totalProjects}`);
+    res.json(totalProjects);
+  },
+
 };
 
 export default projectController;
