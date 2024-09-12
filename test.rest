@@ -7,7 +7,7 @@ content-type: application/json
   "first_name": "Les Grands",
   "last_name": "AAA",
   "confirmation": "abc123eeze",
-  
+  "address": "123 rue de l'église", 
   "zip_code": "75001",
   "country": "france",
   "city": "Paris",
@@ -19,7 +19,7 @@ POST http://localhost:3000/api/auth/login
 content-type: application/json
 
 {
-  "email": "testIgor2@gmail.com",
+  "email": "testIgor3@gmail.com",
   "password": "abc123eeze"
 }
 
