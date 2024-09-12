@@ -1,14 +1,21 @@
-
-PUT http://localhost:3000/api/users/15
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsImlhdCI6MTcyNjA1ODU0OCwiZXhwIjoxNzI2MDYyMTQ4fQ.5p9DJpT7DroKlFK3SnSI5EVfPvXt1Z17GckogXD1gXA
+POST http://localhost:3000/api/auth/login
 content-type: application/json
 
 {
-  "email": "testIgor3@gmail.com",
-  "password": "abc123eeze",
+    "email": "testIgor5@gmail.com",
+    "password": "testIgor5"
+}
+
+
+###
+POST http://localhost:3000/api/auth/register
+content-type: application/json
+
+{
+  "email": "testIgor5@gmail.com",
+  "password": "testIgor5",
   "first_name": "Les Grands",
   "last_name": "AAA",
-  "confirmation": "abc123eeze",
   "address": "4 Rue des boulets",
   "zip_code": "75001",
   "country": "france",
@@ -17,20 +24,11 @@ content-type: application/json
 }
 
 
+###
+DELETE http://localhost:3000/api/users/16
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNjE0Mjg4OSwiZXhwIjoxNzI2MTQ2NDg5fQ.AHQgKNL3FhrRYZe-bzkWvZPAIhrQNjyoi3XShIP5pZs
+Content-type: application/json
+
 {
-  "email": "testIgor3@gmail.com",
-  "password": "abc123eeze"
+    "message": "Account deleted successfully"
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
