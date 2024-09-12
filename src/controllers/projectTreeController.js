@@ -47,12 +47,26 @@ const projectTreeController = {
         res.json(projectTree);
     },
 
+    async getThreeMostBoought(req, res) {
+        const [threeTrees] = await sequelize.query(`
+            SELECT pt.id, sp.name AS tree_name, pt.basic_quantity, pt.current_quantity, 
+                   (pt.basic_quantity - pt.current_quantity) AS sold_quantity, sp.description, sp.price, sp.picture, sp.co2_compensation
+            FROM project_tree pt
+            JOIN species sp ON pt.species_id = sp.id
+            ORDER BY sold_quantity DESC
+            LIMIT 3;
+            `)
+            res.json(threeTrees);
+    },
+
+
+
     async plantedTreesCounter(req, res) {
 
         // On exécute avec Sequelize la requête calculant le total d'arbres plantés
         const [rows] = await sequelize.query(`
         SELECT SUM(basic_quantity - current_quantity) AS totalDifference
-        FROM project_tree;
+        FROM project_tree;\
       `);
 
         // On affiche uniquement la valeur numérique de la première ligne du tableau dans la réponse JSON
