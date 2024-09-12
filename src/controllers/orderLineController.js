@@ -3,7 +3,7 @@ import { Order_line } from '../models/index.js';
 import { NotFoundError } from '../utils/errors.js';
 
 const orderLineController = {
-    // controller qui permet de récupérer toutes les commandes et leurs informations rattachées à une commande identifiée par son ID
+    // controller qui permet de récupérer toutes les lignes de commandes et leurs informations rattachées à une commande identifiée par son ID
     async getOneOrderLines(req, res) {
         const orderLines = await Order_line.findAll({
             order: [['id', 'ASC']],

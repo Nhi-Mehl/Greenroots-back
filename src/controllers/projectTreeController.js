@@ -66,7 +66,7 @@ const projectTreeController = {
         // On exécute avec Sequelize la requête calculant le total d'arbres plantés
         const [rows] = await sequelize.query(`
         SELECT SUM(basic_quantity - current_quantity) AS totalDifference
-        FROM project_tree;\
+        FROM project_tree;
       `);
 
         // On affiche uniquement la valeur numérique de la première ligne du tableau dans la réponse JSON
