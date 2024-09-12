@@ -57,9 +57,12 @@ const userController = {
             message: 'User updated successfully',
             data: userUpdate
         });
+    },
 
-
-    }
+    // Modifier les informations d'un utilisateur
+    async deleteUser(req, res) {
+        
+        }
 
 };
 
