@@ -59,9 +59,27 @@ const userController = {
         });
     },
 
-    // Modifier les informations d'un utilisateur
-    async deleteUser(req, res) {
+    // Supprimer son compte utilisateur
+    async deleteAccount(req, res) {
+        const id = req.params.id;
+
+        // Permet de retrouver son utilisateur
+        const user = await User.findByPk(id);
+
+        // Si l'utilisateur n'existe pas, renvoyer l'erreur 404
+        if (!user) {
+            return res.status(404).json({ message: `User with id ${id} not found` });
+        }
         
+        // on supprime son compte
+        await user.destroy();
+
+        // Envoyer une réponse avec le message de suppression
+        return res.json({
+            success: true,
+            message: 'Account deleted successfully',
+        });
+
         }
 
 };
