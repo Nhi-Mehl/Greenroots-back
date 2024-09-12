@@ -10,7 +10,6 @@ const orderController = {
         res.json(orders);
     },
 
-
     // Permet de récupérer tous les orders d'un utilisateur
 
     async getAllUserOrders(req, res) {
