@@ -57,6 +57,14 @@ const projectController = {
     res.json(totalProjects);
   },
 
+  // fonction pour afficher tous les projets dans le back-office
+  async backOfficeGetAll(req, res) {
+    const projects = await Project.findAll({
+      order: [['name', 'ASC']],
+    });
+    res.render(projects);
+  },
+
 };
 
 export default projectController;

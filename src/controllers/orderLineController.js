@@ -21,9 +21,16 @@ const orderLineController = {
                 }
             ],
         });
+
+        if(userOrders.user_id !== req.user.id) {
+            return res.status(403).json({ message: 'You are not allowed to see this order'});
+        };
+        if (!userOrders || userOrders.length === 0) {
+            
         res.json(orderLines);
         console.log(orderLines);
     }
+}
 }
 
 export default orderLineController;
