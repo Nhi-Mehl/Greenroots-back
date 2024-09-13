@@ -32,3 +32,24 @@ Content-type: application/json
 {
     "message": "Account deleted successfully"
 }
+
+###
+POST http://localhost:3000/api/orders/create_order
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTcyNjIzMjQ4NywiZXhwIjoxNzI2MjM2MDg3fQ.XmUXl6UfUHbj_bZGJ6hkyqk8DswsyuJtI1Qc7sMjv4U
+content-type: application/json
+
+{
+  "amount": 150.5,
+  "orderLine": [
+    {
+      "project_tree_id": 3,
+      "quantity": 2,
+      "amount": 30.0
+    },
+    {
+      "project_tree_id": 5,
+      "quantity": 1,
+      "amount": 120.5
+    }
+  ]
+}
