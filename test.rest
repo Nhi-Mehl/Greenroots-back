@@ -1,14 +1,15 @@
-
 PUT http://localhost:3000/api/users/15
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsImlhdCI6MTcyNjA1ODU0OCwiZXhwIjoxNzI2MDYyMTQ4fQ.5p9DJpT7DroKlFK3SnSI5EVfPvXt1Z17GckogXD1gXA
 content-type: application/json
 
+###
+POST http://localhost:3000/api/auth/register
+content-type: application/json
 {
   "email": "testIgor3@gmail.com",
   "password": "abc123eeze",
   "first_name": "Les Grands",
   "last_name": "AAA",
-  "confirmation": "abc123eeze",
   "address": "4 Rue des boulets",
   "zip_code": "75001",
   "country": "france",
@@ -16,11 +17,17 @@ content-type: application/json
   "phone_number": "0173004567"
 }
 
+###
+POST http://localhost:3000/api/auth/login
+content-type: application/json
 
 {
   "email": "testIgor3@gmail.com",
   "password": "abc123eeze"
 }
+
+###
+GET http://localhost:3000/api/projects/highlights
 
 
 
