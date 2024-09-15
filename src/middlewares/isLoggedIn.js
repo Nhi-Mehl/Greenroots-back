@@ -1,6 +1,6 @@
 // Middleware to know if user is logged in by checking the token
 import jwt from 'jsonwebtoken';
-import { User } from '../models/index.js';
+import { User, Blacklisted_token } from '../models/index.js';
 
 const isLoggedIn = async (req, res, next) => {
     // Get the token from the request headers
@@ -18,6 +18,14 @@ const isLoggedIn = async (req, res, next) => {
     }
 
     try {
+        // vérification si le token est blacklisté
+        const blacklisted = await Blacklisted_token.findOne({
+            where: { token }
+        });
+
+        if (blacklisted) {
+            return res.status(401).json({ message: 'Token is blacklisted' });
+        }
         // Verify the token
         const decoded = jwt.verify(tokenWithoutBearer, process.env.JWT_SECRET);
 

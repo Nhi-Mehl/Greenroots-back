@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import sequelize from "../database/client";
+import sequelize from "../database/client.js";
 
 class Blacklisted_token extends Model { }
 

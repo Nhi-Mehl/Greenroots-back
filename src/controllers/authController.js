@@ -124,8 +124,29 @@ const authController = {
   },
 
 
-  // déconnexion
+  // déconnexion on ajoute le token dans la table blacklist_token
+  async logout(req, res) {
+    const token = req.headers.authorization ? req.headers.authorization.slice(7) : null;
 
+    if (!token) {
+      return res.status(400).json({ message: 'No token provided' });
+    }
+
+    try {
+      // Décoder le token pour obtenir son expiration
+      const decoded = jwt.decode(token);  // Utilise decode ici, pas verify
+
+      // Stocker le token et son expiration dans la table blacklisted_token
+      await Blacklisted_token.create({
+        token: token,
+        expiry: new Date(decoded.exp * 1000),
+      });
+
+      return res.status(200).json({ message: 'Logout successful, token blacklisted' });
+    } catch (error) {
+      return res.status(500).json({ message: 'Failed to blacklist token' });
+    }
+  },
 
 
 };

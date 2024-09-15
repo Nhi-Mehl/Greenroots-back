@@ -35,7 +35,7 @@ Content-type: application/json
 
 ###
 POST http://localhost:3000/api/orders/create_order
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTcyNjIzMjQ4NywiZXhwIjoxNzI2MjM2MDg3fQ.XmUXl6UfUHbj_bZGJ6hkyqk8DswsyuJtI1Qc7sMjv4U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTcyNjQwMDk4OCwiZXhwIjoxNzI2NDA0NTg4fQ.nHHgaxbGo-yHnj_Bdh1nvChZeArxID858X7HclI3uds
 content-type: application/json
 
 {
@@ -53,3 +53,9 @@ content-type: application/json
     }
   ]
 }
+
+
+###
+POST http://localhost:3000/api/auth/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTcyNjQwMDk4OCwiZXhwIjoxNzI2NDA0NTg4fQ.nHHgaxbGo-yHnj_Bdh1nvChZeArxID858X7HclI3uds
+content-type: application/json
