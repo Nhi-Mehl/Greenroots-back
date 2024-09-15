@@ -8,9 +8,6 @@ Order.init(
         amount: {
             type: DataTypes.DECIMAL,
         },
-        date: {
-            type: DataTypes.DATE,
-        },
     },
     {
         sequelize,

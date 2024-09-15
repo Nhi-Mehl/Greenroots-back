@@ -20,7 +20,7 @@ const isLoggedIn = async (req, res, next) => {
     try {
         // vérification si le token est blacklisté
         const blacklisted = await Blacklisted_token.findOne({
-            where: { token }
+            where: { token: tokenWithoutBearer }
         });
 
         if (blacklisted) {
