@@ -68,9 +68,9 @@ VALUES
     ('Emily', 'Lopez', 'user', '4041 Pine Ave', '98765', 'Sunsetville', 'Russia', '2342342345', 'emilylopez@example.com', 'password789');
 
 INSERT INTO "order"
-    ("amount", "date", "user_id") OVERRIDING SYSTEM VALUE
+    ("amount", "user_id") OVERRIDING SYSTEM VALUE
 VALUES 
-    (636,'2024-06-03 14:30:00+02:00', 1);
+    (636, 1);
 
 INSERT INTO "order_line"
     ("quantity", "amount", "project_tree_id", "order_id") OVERRIDING SYSTEM VALUE

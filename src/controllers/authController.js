@@ -1,7 +1,7 @@
 import { z } from "zod";
 import Scrypt from "../utils/scrypt.js";
 import jwt from "jsonwebtoken";
-import { User } from "../models/index.js";
+import { User, Blacklisted_token } from "../models/index.js";
 import { NotFoundError } from "../utils/errors.js";
 
 const userSchema = z.object({
@@ -19,6 +19,9 @@ const userSchema = z.object({
 });
 
 const authController = {
+
+  // création de l'utilisateur
+
   async create(req, res) {
     // On utilise safeParse pour gérer l'erreur
     const result = userSchema.partial().safeParse(req.body);
@@ -78,6 +81,8 @@ const authController = {
     });
   },
 
+
+  // connexion 
   async login(req, res) {
     const result = userSchema.partial().safeParse(req.body);
     console.log(result);
@@ -117,6 +122,12 @@ const authController = {
     // On répond avec un token d'accès
     return res.json({ accessToken });
   },
+
+
+  // déconnexion
+
+
+
 };
 
 export default authController;
