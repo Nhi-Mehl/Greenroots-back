@@ -44,12 +44,6 @@ const authController = {
       phone_number,
     } = result.data;
 
-    // Ici je vais vérifier que le mot de passe et la confirmation sont les mêmes
-    if (password !== confirmation) {
-      return res.status(400).json({
-        errors: [{ message: "Les mots de passe ne correspondent pas" }],
-      });
-    }
 
     // On vérifie si l'utilisateur existe déjà
     const userExists = await User.findOne({ where: { email } });
@@ -58,7 +52,7 @@ const authController = {
     if (userExists) {
       return res.status(409).json({ message: "User already exists" });
     }
-
+    
     // On hâche le mot de passe
     const hashedPassword = Scrypt.hash(password);
 
@@ -106,6 +100,7 @@ const authController = {
     if (!foundUser) {
       throw new NotFoundError("User not found");
     }
+
 
     // Si on a un utilisateur, on teste si le mot de passe est valide
     const validPwd = Scrypt.verify(password, foundUser.password);

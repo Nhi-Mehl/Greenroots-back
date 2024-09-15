@@ -1,13 +1,22 @@
-PUT http://localhost:3000/api/users/15
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsImlhdCI6MTcyNjA1ODU0OCwiZXhwIjoxNzI2MDYyMTQ4fQ.5p9DJpT7DroKlFK3SnSI5EVfPvXt1Z17GckogXD1gXA
+POST http://localhost:3000/api/auth/login
+content-type: application/json
+
+{
+    "email": "testIgor5@gmail.com",
+    "password": "testIgor5"
+}
+
+
+###
+POST http://localhost:3000/api/auth/register
 content-type: application/json
 
 ###
 POST http://localhost:3000/api/auth/register
 content-type: application/json
 {
-  "email": "testIgor3@gmail.com",
-  "password": "abc123eeze",
+  "email": "testIgor5@gmail.com",
+  "password": "testIgor5",
   "first_name": "Les Grands",
   "last_name": "AAA",
   "address": "4 Rue des boulets",
@@ -21,23 +30,32 @@ content-type: application/json
 POST http://localhost:3000/api/auth/login
 content-type: application/json
 
+###
+DELETE http://localhost:3000/api/users/16
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNjE0Mjg4OSwiZXhwIjoxNzI2MTQ2NDg5fQ.AHQgKNL3FhrRYZe-bzkWvZPAIhrQNjyoi3XShIP5pZs
+Content-type: application/json
+
 {
-  "email": "testIgor3@gmail.com",
-  "password": "abc123eeze"
+    "message": "Account deleted successfully"
 }
 
 ###
-GET http://localhost:3000/api/projects/highlights
+POST http://localhost:3000/api/orders/create_order
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTcyNjIzMjQ4NywiZXhwIjoxNzI2MjM2MDg3fQ.XmUXl6UfUHbj_bZGJ6hkyqk8DswsyuJtI1Qc7sMjv4U
+content-type: application/json
 
-
-
-
-
-
-
-
-
-
-
-
-
+{
+  "amount": 150.5,
+  "orderLine": [
+    {
+      "project_tree_id": 3,
+      "quantity": 2,
+      "amount": 30.0
+    },
+    {
+      "project_tree_id": 5,
+      "quantity": 1,
+      "amount": 120.5
+    }
+  ]
+}
