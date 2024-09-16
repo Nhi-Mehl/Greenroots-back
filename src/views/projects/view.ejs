@@ -1,0 +1,78 @@
+<%- include('../partials/header') %>
+
+<!-- Main Content -->
+<main>
+  <form action="/admin/projects/<%= project.id %>" method="POST" class="edit-form">
+    <div class="input-group">
+      <label for="name">Name</label>
+      <input value="<%= project.name %>" name="name">
+    </div>
+
+    <div class="input-group">
+      <label for="description">Description</label>
+      <textarea name="description" id="description" cols="30" rows="10"><%= project.description %></textarea>
+    </div>
+
+    <div class="input-group">
+      <label for="description">Arbres du projet</label>
+
+      <% project.project_trees.forEach(tree => { %>
+        <hr />
+        <div class="input-group">
+          <label for="tree">Espèce</label>
+          <select id="trees" name="species">
+            <% species.forEach(spe => { %>
+              <option value="<%= spe.id %>" <%= spe.id === tree.species.id ? 'selected' : '' %>><%= spe.name %></option>
+            <% }) %>
+          </select>
+          <label for="tree">Quantité</label>
+          <input value="<%= tree.basic_quantity %>" name="tree">
+          <p>Quantité vendue: <%= tree.basic_quantity - tree.current_quantity %></p>
+          <p>Quantité restant: <%= tree.current_quantity %></p>
+          <a href="/projects/<%= project.id %>/project_tree/<%= tree.id %>/delete">Supprimer</a>
+        </div>
+      <% }) %>
+
+      <button id="add-species">Ajouter une espèce</button>
+    </div>
+
+    <button type="submit">Mettre à jour</button>
+  </form>
+</main>
+<!-- Footer -->
+
+<template id="new-species">
+  <div class="input-group">
+    <hr />
+    <label for="tree">Espèce</label>
+    <select id="trees" name="specie">
+      <option value="false">Sélectionner l'espèce</option>
+      <% species.forEach(spe => { %>
+        <option value="<%= spe.id %>"><%= spe.name %></option>
+      <% }) %>
+    </select>
+    <label for="tree">Quantité</label>
+    <input value="0" name="tree">
+    <a href="TOGENERATE">Supprimer</a>
+  </div>
+</template>
+
+<script>
+  const addSpeciesBtn = document.getElementById('add-species');
+
+  addSpeciesBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    const template = document.getElementById('new-species');
+    const newSpecies = template.content.cloneNode(true);
+    const deleteBtn = newSpecies.querySelector('a');
+
+    deleteBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.target.parentElement.remove();
+    });
+
+    addSpeciesBtn.before(newSpecies);
+  });
+</script>
+
+<%- include('../partials/footer') %>
