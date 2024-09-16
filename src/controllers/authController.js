@@ -1,7 +1,7 @@
 import { z } from "zod";
 import Scrypt from "../utils/scrypt.js";
 import jwt from "jsonwebtoken";
-import { User } from "../models/index.js";
+import { User, Blacklisted_token } from "../models/index.js";
 import { NotFoundError } from "../utils/errors.js";
 
 const userSchema = z.object({
@@ -19,6 +19,9 @@ const userSchema = z.object({
 });
 
 const authController = {
+
+  // création de l'utilisateur
+
   async create(req, res) {
     // On utilise safeParse pour gérer l'erreur
     const result = userSchema.partial().safeParse(req.body);
@@ -78,6 +81,8 @@ const authController = {
     });
   },
 
+
+  // connexion 
   async login(req, res) {
     const result = userSchema.partial().safeParse(req.body);
     console.log(result);
@@ -117,6 +122,33 @@ const authController = {
     // On répond avec un token d'accès
     return res.json({ accessToken });
   },
+
+
+  // déconnexion on ajoute le token dans la table blacklist_token
+  async logout(req, res) {
+    const token = req.headers.authorization ? req.headers.authorization.slice(7) : null;
+
+    if (!token) {
+      return res.status(400).json({ message: 'No token provided' });
+    }
+
+    try {
+      // Décoder le token pour obtenir son expiration
+      const decoded = jwt.decode(token);  // Utilise decode ici, pas verify
+
+      // Stocker le token et son expiration dans la table blacklisted_token
+      await Blacklisted_token.create({
+        token: token,
+        expiry: new Date(decoded.exp * 1000),
+      });
+
+      return res.status(200).json({ message: 'Logout successful, token blacklisted' });
+    } catch (error) {
+      return res.status(500).json({ message: 'Failed to blacklist token' });
+    }
+  },
+
+
 };
 
 export default authController;
