@@ -21,7 +21,11 @@ const userController = {
     // on récupère toutes les informations d'un utilisateur
     async getOne(req, res) {
         // find user by req.user.id
-        const user = await User.findByPk(req.user.id);
+        const user = await User.findByPk(req.user.id, {
+            attributes: ['id','first_name', 'role', 'address', 'zip_code', 'city', 'country', 'phone_number', 'email'],
+        });
+
+        
         // respond with user
         res.json(user);
     },
