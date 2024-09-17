@@ -36,7 +36,7 @@ const userController = {
         const id = req.params.id;
 
         // On utilise safeParse pour gérer l'erreur
-        const result = userSchema.safeParse(req.body);
+        const result = userSchema.partial().safeParse(req.body);
         console.log(result);
 
         // Si le resultat n'est pas correct, on renvoie une erreur 400
