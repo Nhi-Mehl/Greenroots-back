@@ -4,6 +4,7 @@ import speciesRouter from './speciesRouter.js';
 
 const router = Router();
 
+router.use('/index', (req, res) => { res.render('index'); })
 router.use('/projects', projectRouter);
 router.use('/species', speciesRouter);
 
