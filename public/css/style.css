@@ -25,6 +25,11 @@ header h1 {
   font-size: 1.5rem;
 }
 
+.my-1 {
+  display: flex;
+  justify-content: space-between;
+}
+
 header button {
   background-color: white;
   color: #4caf50;
