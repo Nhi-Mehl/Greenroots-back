@@ -42,7 +42,7 @@ Content-type: application/json
 
 ###
 POST http://localhost:3000/api/orders/create_order
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTcyNjQwMDk4OCwiZXhwIjoxNzI2NDA0NTg4fQ.nHHgaxbGo-yHnj_Bdh1nvChZeArxID858X7HclI3uds
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTcyNjQ5NzgyMywiZXhwIjoxNzI2NTAxNDIzfQ.9h8c_lcbRDclO7kb0AwRMInF8XdScrBz8ltsd9ijBrw
 content-type: application/json
 
 {
@@ -64,5 +64,12 @@ content-type: application/json
 
 ###
 POST http://localhost:3000/api/auth/logout
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTcyNjQwMDk4OCwiZXhwIjoxNzI2NDA0NTg4fQ.nHHgaxbGo-yHnj_Bdh1nvChZeArxID858X7HclI3uds
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTcyNjQ5ODYwMSwiZXhwIjoxNzI2NTAyMjAxfQ.4MhmH674DahScGnT-wGnMtAeh3IjWoOW9dAm9cuEVS4
 content-type: application/json
+
+
+
+###
+GET http://localhost:3000/api/users/13
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTcyNjQ5ODY1OSwiZXhwIjoxNzI2NTAyMjU5fQ.OKFT9fyY6afS353vqgOtxOZECybVjS4sqH4mWEKurDw
+

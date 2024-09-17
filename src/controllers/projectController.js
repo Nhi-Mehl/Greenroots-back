@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { Project } from '../models/index.js';
 import { NotFoundError } from '../utils/errors.js';
 import { Sequelize } from 'sequelize';
-//import { Association } from 'sequelize';
+
 
 const projectSchema = z.object({
   name: z.string().min(1),

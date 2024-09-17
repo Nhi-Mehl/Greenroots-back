@@ -4,7 +4,7 @@ import Order_line from './Order_line.js';
 import Species from './Species.js';
 import Project_tree from './Project_tree.js';
 import User from './User.js';
-import Blacklisted_token from './Black_listed_token.js';
+import Blacklisted_token from './Blacklisted_token.js';
 
 // Project <-> Tree_project
 // one-to-many
