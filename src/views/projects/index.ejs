@@ -1,0 +1,19 @@
+<%- include('../partials/headerLogout') %>
+
+
+<!-- Main Content -->
+<main>
+    <ul>
+        <% projects.forEach(project => { %>
+            <li>
+                <a href="/admin/projects/<%= project.id %>">
+                    <%= project.name %>
+                </a>
+            </li>
+            
+        <% }) %>
+    </ul>
+</main>
+<!-- Footer -->
+
+<%- include('../partials/footer') %>
