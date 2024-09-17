@@ -14,7 +14,6 @@ content-type: application/json
 ###
 POST http://localhost:3000/api/auth/register
 content-type: application/json
-
 {
   "email": "testIgor5@gmail.com",
   "password": "testIgor5",
@@ -42,7 +41,7 @@ Content-type: application/json
 
 ###
 POST http://localhost:3000/api/orders/create_order
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTcyNjQ5NzgyMywiZXhwIjoxNzI2NTAxNDIzfQ.9h8c_lcbRDclO7kb0AwRMInF8XdScrBz8ltsd9ijBrw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTcyNjU3NzI2NSwiZXhwIjoxNzI2NTgwODY1fQ.UAKb9SSEcTierlxn5hUwhw2R0c8i1t2NsduQsErM30c
 content-type: application/json
 
 {
