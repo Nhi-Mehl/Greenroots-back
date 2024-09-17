@@ -1,0 +1,19 @@
+<%- include('../partials/headerLogout') %>
+
+
+<!-- Main Content -->
+<main>
+    <ul>
+        <% species.forEach(spe => { %>
+            <li>
+                <a href="/admin/species/<%= spe.id %>">
+                    <%= spe.name %>
+                </a>
+            </li>
+            
+        <% }) %>
+    </ul>
+</main>
+<!-- Footer -->
+
+<%- include('../partials/footer') %>
