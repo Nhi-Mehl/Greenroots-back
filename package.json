@@ -23,7 +23,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:reset": "psql -U greenroots -d greenroots -f data/create_tables.sql",
     "db:create": "psql -U greenroots -d greenroots -f data/seed_database.sql"
-
   },
   "keywords": [],
   "author": "",

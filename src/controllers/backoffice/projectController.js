@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { Project } from '../../models/index.js';
 import { Species } from '../../models/index.js';
 import { Sequelize } from 'sequelize';
-//import { Association } from 'sequelize';
+
 
 // const projectSchema = z.object({
 //   name: z.string().min(1),
@@ -21,7 +21,7 @@ const projectController = {
     const projects = await Project.findAll({
       order: [['name', 'ASC']],
     });
-    res.render('projects', { projects });
+    res.render('projects/index', { projects });
   },
 
   // controller pour récupérer un seul projet en fonction de son id
