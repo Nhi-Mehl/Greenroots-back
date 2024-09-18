@@ -6,6 +6,14 @@ content-type: application/json
     "password": "testIgor5"
 }
 
+###
+POST http://localhost:3000/api/auth/login
+content-type: application/json
+
+{
+    "email": "nhi@gmail.com",
+    "password": "abcd1234"
+}
 
 ###
 POST http://localhost:3000/api/auth/register
@@ -28,10 +36,6 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:3000/api/auth/login
-content-type: application/json
-
-###
 DELETE http://localhost:3000/api/users/16
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNjE0Mjg4OSwiZXhwIjoxNzI2MTQ2NDg5fQ.AHQgKNL3FhrRYZe-bzkWvZPAIhrQNjyoi3XShIP5pZs
 Content-type: application/json
@@ -42,7 +46,7 @@ Content-type: application/json
 
 ###
 POST http://localhost:3000/api/orders/create_order
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTcyNjQ5NzgyMywiZXhwIjoxNzI2NTAxNDIzfQ.9h8c_lcbRDclO7kb0AwRMInF8XdScrBz8ltsd9ijBrw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNjY2NTU0NSwiZXhwIjoxNzI2NjY5MTQ1fQ.UuSOQDDAgVIzHK7SOLkU5lt_N_2r7cL2vDDEt8JBAi4
 content-type: application/json
 
 {
@@ -73,3 +77,31 @@ content-type: application/json
 GET http://localhost:3000/api/users/13
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTcyNjQ5ODY1OSwiZXhwIjoxNzI2NTAyMjU5fQ.OKFT9fyY6afS353vqgOtxOZECybVjS4sqH4mWEKurDw
 
+###vien
+Get http://localhost:3000/api/project_trees/highlights
+
+###
+GET http://localhost:3000/api/orders/16
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNjY2NTU0NSwiZXhwIjoxNzI2NjY5MTQ1fQ.UuSOQDDAgVIzHK7SOLkU5lt_N_2r7cL2vDDEt8JBAi4
+
+
+
+###
+GET http://localhost:3000/api/order_line/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNjY2NDg1OSwiZXhwIjoxNzI2NjY4NDU5fQ.SY5gTWcCQbx9864cmoJxZIfg7HO3PBdUaxQHCXPWspg
+
+###
+PUT http://localhost:3000/api/users/16
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNjY3MTIxNiwiZXhwIjoxNzI2Njc0ODE2fQ.inQMJhTMIbDVYnGYFKYdzwxy-sTR4PqlPXXvLPVAw8I
+content-type: application/json
+
+{
+  "first_name": "nhi",
+  "last_name": "vien",
+  "address": "123 blablabla",
+  "zip_code": "67000",
+  "country": "france",
+  "city": "strasbourg",
+  "phone_number": "0123456789",
+  "email": "nhi@gmail.com"
+}
