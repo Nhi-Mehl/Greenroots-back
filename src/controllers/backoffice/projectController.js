@@ -44,16 +44,26 @@ const projectController = {
     res.render('projects/view', { project, species });
   },
 
+  async newForm(req, res) {
+    const species = await Species.findAll({
+      order: [['name', 'ASC']],
+    });
+    res.render('projects/newProject', { species });
+  },
+
   async create(req, res) {
     // TODO 
+    await Project.create(req.body);
 
+    // Une fois le projet créé, je redirige l'utilisateur vers la liste des projets
+    res.redirect('/admin/projects');
   },
 
   async updateOne(req, res) {
     const { id } = req.params;
 
     // 1. Je récupère les data du form
-    const { name, description } = req.body;
+    const { name, description, picture, status, city, country, continent } = req.body;
 
     const project = await Project.findByPk(id, {
       include: {
@@ -65,6 +75,12 @@ const projectController = {
     // 2. Je les sets sur le projet
     project.name = name;
     project.description = description;
+    project.picture = picture;
+    project.status = status;
+    project.city = city;
+    project.country = country;
+    project.continent = continent;
+
 
     // 3. Je sauvegarde le projet
     await project.save();

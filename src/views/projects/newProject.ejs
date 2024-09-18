@@ -2,61 +2,49 @@
 
 <!-- Main Content -->
 <main>
-  <form action="/admin/projects/<%= project.id %>" method="POST" class="edit-form">
+  <form action="/admin/projects/new_project" method="POST" class="edit-form">
     <div class="input-group">
       <label for="name">Name</label>
-      <input value="<%= project.name %>" name="name">
+      <input value="" name="name" />
     </div>
 
     <div class="input-group">
       <label for="description">Description</label>
-      <textarea name="description" id="description" cols="30" rows="10"><%= project.description %></textarea>
+      <textarea
+        name="description"
+        id="description"
+        cols="30"
+        rows="10"
+      ></textarea>
     </div>
 
     <div class="input-group">
       <label for="picture">Picture</label>
-      <input value="<%= project.picture %>" name="picture">
+      <input value="" name="picture" />
     </div>
 
     <div class="input-group">
       <label for="status">Status</label>
-      <input value="<%= project.status %>" name="status">
+      <input value="" name="status" />
     </div>
 
     <div class="input-group">
       <label for="city">City</label>
-      <input value="<%= project.city %>" name="city">
+      <input value="" name="city" />
     </div>
 
     <div class="input-group">
       <label for="country">Country</label>
-      <input value="<%= project.country %>" name="country">
+      <input value="" name="country" />
     </div>
 
     <div class="input-group">
       <label for="continent">Continent</label>
-      <input value="<%= project.continent %>" name="continent">
+      <input value="" name="continent" />
     </div>
 
     <div class="input-group">
       <label for="description">Arbres du projet</label>
-
-      <% project.project_trees.forEach(tree => { %>
-        <hr />
-        <div class="input-group">
-          <label for="tree">Espèce</label>
-          <select id="trees" name="species">
-            <% species.forEach(spe => { %>
-              <option value="<%= spe.id %>" <%= spe.id === tree.species.id ? 'selected' : '' %>><%= spe.name %></option>
-            <% }) %>
-          </select>
-          <label for="tree">Quantité</label>
-          <input value="<%= tree.basic_quantity %>" name="tree">
-          <p>Quantité vendue: <%= tree.basic_quantity - tree.current_quantity %></p>
-          <p>Quantité restant: <%= tree.current_quantity %></p>
-          <a href="/projects/<%= project.id %>/project_tree/<%= tree.id %>/delete">Supprimer</a>
-        </div>
-      <% }) %>
 
       <button id="add-species">Ajouter une espèce</button>
     </div>
@@ -64,7 +52,6 @@
     <button type="submit">Mettre à jour</button>
   </form>
 </main>
-<!-- Footer -->
 
 <template id="new-species">
   <div class="input-group">
@@ -99,5 +86,7 @@
     addSpeciesBtn.before(newSpecies);
   });
 </script>
+
+<!-- Footer -->
 
 <%- include('../partials/footer') %>
