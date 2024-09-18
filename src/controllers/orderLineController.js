@@ -22,15 +22,15 @@ const orderLineController = {
             ],
         });
 
-        if(userOrders.user_id !== req.user.id) {
-            return res.status(403).json({ message: 'You are not allowed to see this order'});
+        if (orderLines.order_id !== req.params.order_id) {
+            return res.status(403).json({ message: 'You are not allowed to see this order line' });
         };
-        if (!userOrders || userOrders.length === 0) {
-            
-        res.json(orderLines);
-        console.log(orderLines);
+        if (!orderLines || orderLines.length === 0) {
+
+            res.json(orderLines);
+            console.log(orderLines);
+        }
     }
-}
 }
 
 export default orderLineController;
