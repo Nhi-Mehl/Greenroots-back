@@ -48,15 +48,16 @@ const projectTreeController = {
     res.json(projectTree);
   },
 
-  async getThreeMostBoought(req, res) {
+  async getThreeMostBought(req, res) {
     const [threeTrees] = await sequelize.query(`
-            SELECT pt.id, sp.name AS tree_name, pt.basic_quantity, pt.current_quantity, 
-                   (pt.basic_quantity - pt.current_quantity) AS sold_quantity, sp.description, sp.price, sp.picture, sp.co2_compensation, p.name, pt.project_id
-            FROM project_tree pt
-            JOIN species sp ON pt.species_id = sp.id
-            JOIN project p ON pt.project_id = p.id
-            ORDER BY sold_quantity DESC
-            LIMIT 3;
+           SELECT pt.id, sp.name AS tree_name, pt.basic_quantity, pt.current_quantity,
+                  (pt.basic_quantity - pt.current_quantity) AS sold_quantity, sp.description, sp.price, sp.picture, sp.co2_compensation, p.name, pt.project_id
+           FROM project_tree pt
+           JOIN species sp ON pt.species_id = sp.id
+           JOIN project p ON pt.project_id = p.id
+           ORDER BY sold_quantity DESC
+           LIMIT 3;
+
             `);
     res.json(threeTrees);
   },

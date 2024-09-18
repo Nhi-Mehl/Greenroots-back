@@ -12,7 +12,7 @@ projectTreeRouter.get(
 // Route qui permet de récupérer les 3 arbres les plus vendus
 projectTreeRouter.get(
   "/highlights",
-  cw(projectTreeController.getThreeMostBoought)
+  cw(projectTreeController.getThreeMostBought)
 );
 // Route qui permet de récupérer les 3 arbres les plus vendus pour HomePage
 projectTreeRouter.get(
