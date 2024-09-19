@@ -51,7 +51,7 @@ const projectController = {
   },
 
   async create(req, res) {
-    // TODO 
+
     await Project.create(req.body);
 
     // Une fois le projet créé, je redirige l'utilisateur vers la liste des projets
@@ -119,7 +119,26 @@ const projectController = {
     }
 
     res.redirect('/admin/projects');
-  }
+  },
+
+  async delete(req, res) {
+
+    // Supprimer les arbres de projets rattachés
+    await Project_tree.destroy({
+      where: {
+        project_id: req.params.id,
+      },
+    });
+
+    // Supprimer le projet principal
+    await Project.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    res.redirect('/admin/projects');
+  },
 
 };
 
