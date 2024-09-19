@@ -61,7 +61,19 @@ const speciesController = {
 
 
         res.redirect('/admin/species');
-    }
+    },
+
+    async delete(req, res) {
+
+        // Supprimer l'espèce
+        await Species.destroy({
+            where: {
+                id: req.params.id,
+            },
+        });
+
+        res.redirect('/admin/species');
+    },
 
 };
 
