@@ -47,10 +47,16 @@ const projectController = {
     const species = await Species.findAll({
       order: [['name', 'ASC']],
     });
+
+    // Générer un token que que je vais utiliser dans le tempalte html
+    // On garde ce token en session
     res.render('projects/newProject', { species });
   },
 
   async create(req, res) {
+
+    // Ici je récupère le token csrf dans la requêtez et je vérifie que c'estt le même que celui stocké en session
+    // si j'en ai pas ou si il n'est pas le même, je ne fais pas la suite et renvoi un erreur
 
     await Project.create(req.body);
 

@@ -3,6 +3,8 @@
 <!-- Main Content -->
 <main>
   <form action="/admin/projects/new_project" method="POST" class="edit-form">
+   
+    <!-- TODO : mettre un input type hidden avec comme name "csrf" et comme valeur, le token généré côté back-->
     <div class="input-group">
       <label for="name">Name</label>
       <input value="" name="name" />
@@ -49,7 +51,7 @@
       <button id="add-species">Ajouter une espèce</button>
     </div>
 
-    <button type="submit">Mettre à jour</button>
+    <button type="submit">Ajouter ce projet</button>
   </form>
 </main>
 
