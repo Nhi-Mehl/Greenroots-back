@@ -1,7 +1,15 @@
-import { z } from 'zod';
-import { Project } from '../../models/index.js';
-import { Species } from '../../models/index.js';
-import { Sequelize } from 'sequelize';
+import {
+  z
+} from 'zod';
+import {
+  Project
+} from '../../models/index.js';
+import {
+  Species
+} from '../../models/index.js';
+import {
+  Sequelize
+} from 'sequelize';
 
 
 // const projectSchema = z.object({
@@ -19,15 +27,21 @@ const projectController = {
   // controller pour récupérer tous les projets de la BDD
   async getAll(req, res) {
     const projects = await Project.findAll({
-      order: [['name', 'ASC']],
+      order: [
+        ['name', 'ASC']
+      ],
     });
-    res.render('projects/index', { projects });
+    res.render('projects/index', {
+      projects
+    });
   },
 
   // controller pour récupérer un seul projet en fonction de son id
 
   async getOne(req, res) {
-    const { id } = req.params;
+    const {
+      id
+    } = req.params;
 
     const project = await Project.findByPk(id, {
       include: {
@@ -37,18 +51,27 @@ const projectController = {
     });
 
     const species = await Species.findAll({
-      order: [['name', 'ASC']],
+      order: [
+        ['name', 'ASC']
+      ],
     });
 
     console.log(project);
-    res.render('projects/view', { project, species });
+    res.render('projects/view', {
+      project,
+      species
+    });
   },
 
   async newForm(req, res) {
     const species = await Species.findAll({
-      order: [['name', 'ASC']],
+      order: [
+        ['name', 'ASC']
+      ],
     });
-    res.render('projects/newProject', { species });
+    res.render('projects/newProject', {
+      species
+    });
   },
 
   async create(req, res) {
@@ -60,10 +83,20 @@ const projectController = {
   },
 
   async updateOne(req, res) {
-    const { id } = req.params;
+    const {
+      id
+    } = req.params;
 
     // 1. Je récupère les data du form
-    const { name, description, picture, status, city, country, continent } = req.body;
+    const {
+      name,
+      description,
+      picture,
+      status,
+      city,
+      country,
+      continent
+    } = req.body;
 
     const project = await Project.findByPk(id, {
       include: {
@@ -85,11 +118,18 @@ const projectController = {
     // 3. Je sauvegarde le projet
     await project.save();
 
+
+
     const species = await Species.findAll({
-      order: [['name', 'ASC']],
+      order: [
+        ['name', 'ASC']
+      ],
     });
 
-    res.render('projects/view', { project, species });
+    res.render('projects/view', {
+      project,
+      species
+    });
   }
 
 };
