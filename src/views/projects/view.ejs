@@ -38,65 +38,98 @@
       <input value="<%= project.continent %>" name="continent">
     </div>
 
-    <div class="input-group">
+    <!-- Section Arbres du Projet -->
+    <div class="input-group" id="tree-container">
       <label for="description">Arbres du projet</label>
 
-      <% project.project_trees.forEach(tree => { %>
+      <% project.project_trees.forEach((tree, index) => { %>
         <hr />
-        <div class="input-group">
+        <div class="tree-group" data-tree-index="<%= index %>">
           <label for="tree">Espèce</label>
-          <select id="trees" name="species">
+          <select name="tree[<%= index %>][species_id]">
             <% species.forEach(spe => { %>
               <option value="<%= spe.id %>" <%= spe.id === tree.species.id ? 'selected' : '' %>><%= spe.name %></option>
             <% }) %>
           </select>
           <label for="tree">Quantité</label>
-          <input value="<%= tree.basic_quantity %>" name="tree">
+          <input value="<%= tree.basic_quantity %>" name="tree[<%= index %>][quantity]">
           <p>Quantité vendue: <%= tree.basic_quantity - tree.current_quantity %></p>
           <p>Quantité restant: <%= tree.current_quantity %></p>
+          <input type="hidden" name="tree[<%= index %>][id]" value="<%= tree.id %>">
           <a href="/projects/<%= project.id %>/project_tree/<%= tree.id %>/delete">Supprimer</a>
         </div>
       <% }) %>
 
+      <!-- Bouton pour ajouter une nouvelle espèce -->
       <button id="add-species">Ajouter une espèce</button>
     </div>
 
     <button type="submit">Mettre à jour</button>
   </form>
 </main>
+
 <!-- Footer -->
 
+<!-- Template pour ajouter un nouvel arbre -->
 <template id="new-species">
-  <div class="input-group">
+  <div class="tree-group">
     <hr />
     <label for="tree">Espèce</label>
-    <select id="trees" name="specie">
+    <select name="tree[new][species_id]">
       <option value="false">Sélectionner l'espèce</option>
       <% species.forEach(spe => { %>
         <option value="<%= spe.id %>"><%= spe.name %></option>
       <% }) %>
     </select>
     <label for="tree">Quantité</label>
-    <input value="0" name="tree">
-    <a href="TOGENERATE">Supprimer</a>
+    <input value="0" name="tree[new][quantity]">
+    <a href="#">Supprimer</a>
   </div>
 </template>
 
 <script>
+  let treeIndex = "<%= project.project_trees.length %>";
   const addSpeciesBtn = document.getElementById('add-species');
+  const treeContainer = document.getElementById('tree-container');
 
   addSpeciesBtn.addEventListener('click', (event) => {
     event.preventDefault();
+
     const template = document.getElementById('new-species');
     const newSpecies = template.content.cloneNode(true);
-    const deleteBtn = newSpecies.querySelector('a');
 
+    // Met à jour les noms des champs pour correspondre à l'index dynamique
+    newSpecies.querySelector('select').name = `tree[${treeIndex}][species_id]`;
+    newSpecies.querySelector('input[name="tree[new][quantity]"]').name = `tree[${treeIndex}][quantity]`;
+
+    // Ajout du bouton supprimer avec la bonne logique
+    const deleteBtn = newSpecies.querySelector('a');
     deleteBtn.addEventListener('click', (e) => {
       e.preventDefault();
       e.target.parentElement.remove();
     });
 
+    treeIndex++;
+
+    // Ajoute le nouveau champ juste avant le bouton d'ajout d'espèce
     addSpeciesBtn.before(newSpecies);
+  });
+
+  // Validation du formulaire avant la soumission
+  document.querySelector('form').addEventListener('submit', function (e) {
+    const speciesSelects = document.querySelectorAll('select[name*="[species_id]"]');
+    let formIsValid = true;
+
+    speciesSelects.forEach(select => {
+      if (select.value === 'false' || select.value === '') {
+        formIsValid = false;
+        alert('Veuillez sélectionner une espèce pour chaque arbre.');
+      }
+    });
+
+    if (!formIsValid) {
+      e.preventDefault(); // Empêche la soumission si une espèce n'est pas sélectionnée
+    }
   });
 </script>
 
