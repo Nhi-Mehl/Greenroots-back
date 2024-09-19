@@ -1,90 +1,85 @@
 <%- include('../partials/headerLogout') %>
 
-<!-- Main Content -->
+
+<!-- Main content -->
 <main>
   <form action="/admin/projects/new_project" method="POST" class="edit-form">
-   
-    <!-- TODO : mettre un input type hidden avec comme name "csrf" et comme valeur, le token généré côté back-->
-    <div class="input-group">
-      <label for="name">Name</label>
-      <input value="" name="name" />
-    </div>
+      <div class="input-group">
+        <label for="name">Name</label>
+        <input value="" name="name">
+      </div>
+  
+      <div class="input-group">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+      </div>
+  
+      <div class="input-group">
+        <label for="picture">Picture</label>
+        <input value="" name="picture">
+      </div>
+  
+      <div class="input-group">
+        <label for="status">Status</label>
+        <input value="" name="status">
+      </div>
+  
+      <div class="input-group">
+        <label for="city">City</label>
+        <input value="" name="city">
+      </div>
+  
+      <div class="input-group">
+        <label for="country">Country</label>
+        <input value="" name="country">
+      </div>
+  
+      <div class="input-group">
+        <label for="continent">Continent</label>
+        <input value="" name="continent">
+      </div>
+  
+      <!-- Section Arbres du Projet -->
+      
+  
+      <div class="input-group">
+        <label for="description">Arbres du projet</label>
+        <button id="add-species">Ajouter une espèce</button>
+      </div>
+      <button type="submit">Créer un projet</button>  
+      
+    </form>
 
-    <div class="input-group">
-      <label for="description">Description</label>
-      <textarea
-        name="description"
-        id="description"
-        cols="30"
-        rows="10"
-      ></textarea>
-    </div>
 
-    <div class="input-group">
-      <label for="picture">Picture</label>
-      <input value="" name="picture" />
-    </div>
-
-    <div class="input-group">
-      <label for="status">Status</label>
-      <input value="" name="status" />
-    </div>
-
-    <div class="input-group">
-      <label for="city">City</label>
-      <input value="" name="city" />
-    </div>
-
-    <div class="input-group">
-      <label for="country">Country</label>
-      <input value="" name="country" />
-    </div>
-
-    <div class="input-group">
-      <label for="continent">Continent</label>
-      <input value="" name="continent" />
-    </div>
-
-    <div class="input-group">
-      <label for="description">Arbres du projet</label>
-
-      <button id="add-species">Ajouter une espèce</button>
-    </div>
-
-    <button type="submit">Ajouter ce projet</button>
-  </form>
 </main>
 
 <template id="new-species">
   <div class="input-group">
     <hr />
     <label for="tree">Espèce</label>
-    <select id="trees" name="specie">
+    <select name="tree[new][species_id]">
       <option value="false">Sélectionner l'espèce</option>
       <% species.forEach(spe => { %>
         <option value="<%= spe.id %>"><%= spe.name %></option>
       <% }) %>
     </select>
     <label for="tree">Quantité</label>
-    <input value="0" name="tree">
-    <a href="TOGENERATE">Supprimer</a>
+    <input value="0" name="tree[new][quantity]">
+    <a href="#">Supprimer</a>
   </div>
 </template>
 
 <script>
   const addSpeciesBtn = document.getElementById('add-species');
-
   addSpeciesBtn.addEventListener('click', (event) => {
     event.preventDefault();
     const template = document.getElementById('new-species');
     const newSpecies = template.content.cloneNode(true);
     const deleteBtn = newSpecies.querySelector('a');
-
     deleteBtn.addEventListener('click', (e) => {
       e.preventDefault();
       e.target.parentElement.remove();
     });
-
     addSpeciesBtn.before(newSpecies);
   });
 </script>
