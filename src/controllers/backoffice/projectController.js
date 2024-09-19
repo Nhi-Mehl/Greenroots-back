@@ -47,11 +47,17 @@ const projectController = {
     const species = await Species.findAll({
       order: [['name', 'ASC']],
     });
+
+    // Générer un token que que je vais utiliser dans le tempalte html
+    // On garde ce token en session
     res.render('projects/newProject', { species });
   },
 
   async create(req, res) {
-    // TODO 
+
+    // Ici je récupère le token csrf dans la requêtez et je vérifie que c'estt le même que celui stocké en session
+    // si j'en ai pas ou si il n'est pas le même, je ne fais pas la suite et renvoi un erreur
+
     await Project.create(req.body);
 
     // Une fois le projet créé, je redirige l'utilisateur vers la liste des projets
@@ -119,7 +125,26 @@ const projectController = {
     }
 
     res.redirect('/admin/projects');
-  }
+  },
+
+  async delete(req, res) {
+
+    // Supprimer les arbres de projets rattachés
+    await Project_tree.destroy({
+      where: {
+        project_id: req.params.id,
+      },
+    });
+
+    // Supprimer le projet principal
+    await Project.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    res.redirect('/admin/projects');
+  },
 
 };
 
