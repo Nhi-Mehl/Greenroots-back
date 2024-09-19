@@ -16,11 +16,12 @@ router.get('/', (req, res) => {
 
 });
 
-router.use('/', adminRouter);
+router.use('/toLogin', adminRouter);
+router.use('/toLogout', checkIsAdmin, adminRouter);
 router.get('/index', checkIsAdmin, (req, res) => { res.render('index'); });
 router.use('/projects', checkIsAdmin, projectRouter);
 router.use('/species', checkIsAdmin, speciesRouter);
-router.use('/backoffice', checkIsAdmin, adminRouter);
+
 
 
 export default router;

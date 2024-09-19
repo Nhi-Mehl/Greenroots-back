@@ -10,7 +10,7 @@ adminRouter.post('/login', cw(adminController.loginAction));
 
 // Permet à l'admin de se déconnecter de son compte back office
 
-adminRouter.post('/logout', cw(adminRouter))
+adminRouter.get('/logout', cw(adminController.logoutAction))
 
 
 export default adminRouter;
