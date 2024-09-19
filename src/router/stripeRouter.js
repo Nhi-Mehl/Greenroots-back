@@ -7,7 +7,7 @@ const stripeRouter = Router();
 
 
 // Route qui permet d'effectuer le paiement
-stripeRouter.get('/charge', isLoggedIn, cw(stripeController.stripe));
+stripeRouter.post('/charge', isLoggedIn, cw(stripeController.stripe));
 
 
 export default stripeRouter;

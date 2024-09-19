@@ -14,7 +14,6 @@ content-type: application/json
 ###
 POST http://localhost:3000/api/auth/register
 content-type: application/json
-
 {
   "email": "testIgor5@gmail.com",
   "password": "testIgor5",
@@ -32,17 +31,14 @@ POST http://localhost:3000/api/auth/login
 content-type: application/json
 
 ###
-DELETE http://localhost:3000/api/users/16
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNjE0Mjg4OSwiZXhwIjoxNzI2MTQ2NDg5fQ.AHQgKNL3FhrRYZe-bzkWvZPAIhrQNjyoi3XShIP5pZs
+GET http://localhost:3000/api/orders/13
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTcyNjY0NTgzMCwiZXhwIjoxNzI2NjQ5NDMwfQ.Qe05q76lps-vWe_8g1Z78r8vaMCZlPRNC-dSSQuXa3c
 Content-type: application/json
 
-{
-    "message": "Account deleted successfully"
-}
 
 ###
 POST http://localhost:3000/api/orders/create_order
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTcyNjQ5NzgyMywiZXhwIjoxNzI2NTAxNDIzfQ.9h8c_lcbRDclO7kb0AwRMInF8XdScrBz8ltsd9ijBrw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTcyNjY0NTUyNiwiZXhwIjoxNzI2NjQ5MTI2fQ.LBnmA6l7e3RvfD6jwqElkyqNl5-EDUcPTHv68W5h_KI
 content-type: application/json
 
 {

@@ -65,7 +65,8 @@ VALUES
     ('James', 'Wilson', 'user', '2021 Oak Ct', '56789', 'Oakville', 'China', '8889990000', 'jameswilson@example.com', 'password789'),
     ('Ashley', 'Clark', 'user', '2223 Elm Way', '01234', 'Riverside', 'India', '9990001111', 'ashleyclark@example.com', 'password456'),
     ('Brandon', 'Wright', 'user', '3839 Maple St', '87654', 'Springfield', 'Brazil', '1231231234', 'brandonwright@example.com', 'password321'),
-    ('Emily', 'Lopez', 'user', '4041 Pine Ave', '98765', 'Sunsetville', 'Russia', '2342342345', 'emilylopez@example.com', 'password789');
+    ('Emily', 'Lopez', 'user', '4041 Pine Ave', '98765', 'Sunsetville', 'Russia', '2342342345', 'emilylopez@example.com', 'password789'),
+    ('TestAdmin', 'TestAdmin', 'admin', '4041 Pine Ave', '98765', 'Sunsetville', 'Russia', '2342342345', 'testAdmin@example.com', '691e7aaa651f744d7a6134612d8f24807227b7ea223601aa45a3fa0d98c6fff08ec8d349f2e93c0eadda90b536760abb54f26f8dc55c9de98557e5b551c5da07.32144b5292b86f43db602c77254ba097');
 
 INSERT INTO "order"
     ("amount", "user_id") OVERRIDING SYSTEM VALUE

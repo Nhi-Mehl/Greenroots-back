@@ -18,15 +18,21 @@ const projectController = {
   // controller pour récupérer tous les projets de la BDD
   async getAll(req, res) {
     const projects = await Project.findAll({
-      order: [['name', 'ASC']],
+      order: [
+        ['name', 'ASC']
+      ],
     });
-    res.render('projects/index', { projects });
+    res.render('projects/index', {
+      projects
+    });
   },
 
   // controller pour récupérer un seul projet en fonction de son id
 
   async getOne(req, res) {
-    const { id } = req.params;
+    const {
+      id
+    } = req.params;
 
     const project = await Project.findByPk(id, {
       include: {
@@ -36,20 +42,24 @@ const projectController = {
     });
 
     const species = await Species.findAll({
-      order: [['name', 'ASC']],
+      order: [
+        ['name', 'ASC']
+      ],
     });
 
     console.log(project);
-    res.render('projects/view', { project, species });
+    res.render('projects/view', {
+      project,
+      species
+    });
   },
 
   async newForm(req, res) {
     const species = await Species.findAll({
-      order: [['name', 'ASC']],
+      order: [
+        ['name', 'ASC']
+      ],
     });
-
-    // Générer un token que que je vais utiliser dans le tempalte html
-    // On garde ce token en session
     res.render('projects/newProject', { species });
   },
 
@@ -65,10 +75,12 @@ const projectController = {
   },
 
   async updateOne(req, res) {
-    const { id } = req.params;
+    const {
+      id
+    } = req.params;
 
     // 1. Je récupère les data du form
-    const { name, description, picture, status, city, country, continent, tree } = req.body;
+    const { name, description, picture, status, city, country, continent } = req.body;
 
     // 2. Je récupère le projet à mettre à jour
     const project = await Project.findByPk(id, {
@@ -94,57 +106,14 @@ const projectController = {
     // 4. Je sauvegarde le projet
     await project.save();
 
-    // 5. Je mets à jour les arbres du projet
-    if (Array.isArray(tree)) {
-      for (const treeData of tree) {
-        console.log(tree)
 
-        // Convertir species_id et quantity en nombres
-        const speciesId = parseInt(treeData.species_id, 10);
-        const basicQuantity = parseInt(treeData.quantity, 10);
 
-        if (!treeData.species_id) {
-          return res.status(400).json({ message: 'Species ID is required for each tree' });
-        }
-
-        if (treeData.id) {
-          // Mise à jour d'un arbre existant
-          await Project_tree.update(
-            { species_id: speciesId, basic_quantity: basicQuantity },
-            { where: { id: treeData.id } }
-          );
-        } else {
-          // Ajout d'un nouvel arbre
-          await Project_tree.create({
-            project_id: id,
-            species_id: speciesId,
-            basic_quantity: basicQuantity,
-          });
-        }
-      }
-    }
-
-    res.redirect('/admin/projects');
-  },
-
-  async delete(req, res) {
-
-    // Supprimer les arbres de projets rattachés
-    await Project_tree.destroy({
-      where: {
-        project_id: req.params.id,
-      },
+    const species = await Species.findAll({
+      order: [['name', 'ASC']],
     });
 
-    // Supprimer le projet principal
-    await Project.destroy({
-      where: {
-        id: req.params.id,
-      },
-    });
-
-    res.redirect('/admin/projects');
-  },
+    res.render('projects/view', { project, species });
+  }
 
 };
 
