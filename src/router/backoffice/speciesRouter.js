@@ -12,5 +12,6 @@ speciesRouter.post('/new_species', cw(speciesController.create));
 speciesRouter.get('/:id', cw(speciesController.getOne));
 // route qui permet de modifier une espèce 
 speciesRouter.post('/:id', cw(speciesController.updateOne));
+speciesRouter.get('/:id/delete', cw(speciesController.delete));
 
 export default speciesRouter;
