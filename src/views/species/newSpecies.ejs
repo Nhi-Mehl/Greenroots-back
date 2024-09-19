@@ -1,0 +1,53 @@
+<%- include('../partials/headerLogout') %>
+
+<!-- Main Content -->
+<main>
+  <form action="/admin/species/new_species" method="POST" class="edit-form">
+    <!-- TODO : mettre un input type hidden avec comme name "csrf" et comme valeur, le token généré côté back-->
+    <div class="input-group">
+      <label for="name">Name</label>
+      <input value="" name="name" />
+    </div>
+
+    <div class="input-group">
+      <label for="scientific_name">Scientific name</label>
+      <input value="" name="scientific_name" />
+    </div>
+
+    <div class="input-group">
+      <label for="description">Description</label>
+      <textarea
+        name="description"
+        id="description"
+        cols="30"
+        rows="10"
+      ></textarea>
+    </div>
+
+    <div class="input-group">
+      <label for="price">Price</label>
+      <input value="" name="price" />
+    </div>
+
+    <div class="input-group">
+      <label for="status">Status</label>
+      <input value="" name="status" />
+    </div>
+
+    <div class="input-group">
+      <label for="picture">Picture</label>
+      <input value="" name="picture" />
+    </div>
+
+    <div class="input-group">
+      <label for="co2_compensation">CO2 compensation</label>
+      <input value="" name="co2_compensation" />
+    </div>
+
+    <button type="submit">Ajouter cette espèce</button>
+  </form>
+</main>
+
+<!-- Footer -->
+
+<%- include('../partials/footer') %>

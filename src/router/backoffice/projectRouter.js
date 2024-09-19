@@ -10,5 +10,6 @@ projectRouter.get('/new_project', cw(projectController.newForm));
 projectRouter.post('/new_project', cw(projectController.create));
 projectRouter.get('/:id', cw(projectController.getOne));
 projectRouter.post('/:id', cw(projectController.updateOne));
+projectRouter.get('/:id/delete', cw(projectController.delete));
 
 export default projectRouter;

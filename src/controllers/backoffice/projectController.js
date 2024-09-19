@@ -1,15 +1,6 @@
-import {
-  z
-} from 'zod';
-import {
-  Project
-} from '../../models/index.js';
-import {
-  Species
-} from '../../models/index.js';
-import {
-  Sequelize
-} from 'sequelize';
+import { z } from 'zod';
+import { Project, Species, Project_tree } from '../../models/index.js';
+import { Sequelize } from 'sequelize';
 
 
 // const projectSchema = z.object({
@@ -69,13 +60,14 @@ const projectController = {
         ['name', 'ASC']
       ],
     });
-    res.render('projects/newProject', {
-      species
-    });
+    res.render('projects/newProject', { species });
   },
 
   async create(req, res) {
-    // TODO 
+
+    // Ici je récupère le token csrf dans la requêtez et je vérifie que c'estt le même que celui stocké en session
+    // si j'en ai pas ou si il n'est pas le même, je ne fais pas la suite et renvoi un erreur
+
     await Project.create(req.body);
 
     // Une fois le projet créé, je redirige l'utilisateur vers la liste des projets
@@ -88,16 +80,9 @@ const projectController = {
     } = req.params;
 
     // 1. Je récupère les data du form
-    const {
-      name,
-      description,
-      picture,
-      status,
-      city,
-      country,
-      continent
-    } = req.body;
+    const { name, description, picture, status, city, country, continent } = req.body;
 
+    // 2. Je récupère le projet à mettre à jour
     const project = await Project.findByPk(id, {
       include: {
         association: "project_trees",
@@ -105,7 +90,11 @@ const projectController = {
       },
     });
 
-    // 2. Je les sets sur le projet
+    if (!project) {
+      return res.status(404).send("Project not found");
+    }
+
+    // 3. Je mets à jour les informations du projet
     project.name = name;
     project.description = description;
     project.picture = picture;
@@ -114,22 +103,16 @@ const projectController = {
     project.country = country;
     project.continent = continent;
 
-
-    // 3. Je sauvegarde le projet
+    // 4. Je sauvegarde le projet
     await project.save();
 
 
 
     const species = await Species.findAll({
-      order: [
-        ['name', 'ASC']
-      ],
+      order: [['name', 'ASC']],
     });
 
-    res.render('projects/view', {
-      project,
-      species
-    });
+    res.render('projects/view', { project, species });
   }
 
 };
