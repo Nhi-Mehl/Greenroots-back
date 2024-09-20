@@ -39,6 +39,7 @@
     </div>
 
     <!-- Section Arbres du Projet -->
+     
     <div class="input-group" id="tree-container">
       <label for="description">Arbres du projet</label>
 
@@ -52,9 +53,9 @@
             <% }) %>
           </select>
           <label for="tree">Quantité</label>
-          <input value="<%= tree.basic_quantity %>" name="tree[<%= index %>][quantity]">
+          <input value="<%= tree.current_quantity %>" name="tree[<%= index %>][quantity]">
           <p>Quantité vendue: <%= tree.basic_quantity - tree.current_quantity %></p>
-          <p>Quantité restant: <%= tree.current_quantity %></p>
+          <p>Quantité restante: <%= tree.current_quantity %></p>
           <input type="hidden" name="tree[<%= index %>][id]" value="<%= tree.id %>">
           <a href="/projects/<%= project.id %>/project_tree/<%= tree.id %>/delete">Supprimer</a>
         </div>

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { Project, Species, Project_tree } from '../../models/index.js';
-import { Sequelize } from 'sequelize';
+import sequelize from '../../database/client.js';
 
 
 // const projectSchema = z.object({
@@ -54,49 +54,45 @@ const projectController = {
   },
 
   async create(req, res) {
-    
-    const { name, description, picture, status, city, country, continent, tree } = req.body;
-    console.log(req.body)
-  
-    const project = await Project.create({
-      name,
-      description,
-      picture,
-      status,
-      city,
-      country,
-      continent,
-      
-    });
-console.log('created project',project);
-  
 
-        // Ajout des arbres au projet
-        if (Array.isArray(tree)) {
-            for (const treeData of tree) {
-                const speciesId = parseInt(treeData.species_id, 10);
-                const basicQuantity = parseInt(treeData.quantity, 10);
+    const { name, description, picture, status, city, country, continent, trees } = req.body;
 
-                if (!treeData.species_id) {
-                    return res.status(400).json({ message: 'Species ID is required for each tree' });
-                }
+    try {
+      // Transaction pour garantir que tout se passe bien
+      await sequelize.transaction(async (t) => {
+        // 1. Créer le projet
+        const newProject = await Project.create({
+          name,
+          description,
+          picture,
+          status,
+          city,
+          country,
+          continent,
+        }, { transaction: t });
 
-
-
-                await Project_tree.create({
-                    project_id: project.id,
-                    species_id: speciesId,
-                    basic_quantity: basicQuantity,
-                });
-                console.log('Added tree:', { speciesId, basicQuantity });
-            }
+        // 2. Ajouter les arbres associés
+        if (trees && Array.isArray(trees.species_id)) {
+          for (let i = 0; i < trees.species_id.length; i++) {
+            await Project_tree.create({
+              project_id: newProject.id,  // Associer le projet
+              species_id: trees.species_id[i],
+              basic_quantity: trees.basic_quantity[i],
+              current_quantity: trees.current_quantity[i],
+            }, { transaction: t });
+          }
         }
-       
+      });
 
-        // Redirection après création du projet
-        res.redirect('/admin/projects');
-   
-},
+      // Si tout se passe bien
+      res.redirect('/admin/projects');  // Redirection vers une page de succès ou de liste de projets
+
+    } catch (error) {
+      console.error('Error creating project and trees:', error);
+      res.status(500).json({ message: 'An error occurred while creating the project and trees' });
+    }
+
+  },
 
   async updateOne(req, res) {
     const { id } = req.params;
