@@ -24,6 +24,7 @@ const userController = {
       attributes: [
         "id",
         "first_name",
+        "last_name",
         "role",
         "address",
         "zip_code",

@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import { Order, Order_line } from "../models/index.js";
+import { Order, Order_line, Project_tree, Species } from "../models/index.js";
 
 const orderController = {
   // controller pour récupérer toutes les commandes de la BDD
@@ -47,13 +47,29 @@ const orderController = {
       amount: amount,
     });
 
+    // const projecTree = orderLine.forEach(async (line) => {
+    //   const project_tree = await Project_tree.findByPk(line.project_tree_id);
+
+    //   return project_tree;
+    // });
+
+    // console.log("projecTree", projecTree);
+
+    // const specie = await Species.findByPk(projecTree.species_id);
+
+    // console.log("specie", specie);
+
+    // console.log("orderLine", orderLine);
+
     const newOrderLines = await Promise.all(
       orderLine.map(async (line) => {
+        const totalAmount = line.quantity * line.amount;
+
         return await Order_line.create({
           order_id: newOrder.id,
           project_tree_id: line.project_tree_id,
           quantity: line.quantity,
-          amount: line.amount,
+          amount: totalAmount,
         });
       })
     );

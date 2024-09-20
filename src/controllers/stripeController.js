@@ -1,6 +1,9 @@
-const stripeController = {
+import Stripe from "stripe";
 
-async stripe(req, res) {
+const stripe = new Stripe(process.env.STRIPE_SECRET);
+
+const stripeController = {
+  async stripe(req, res) {
     let { amount, id } = req.body;
 
     console.log("amount & id : ", amount, id);
@@ -22,6 +25,6 @@ async stripe(req, res) {
       res.json({ success: false, message: error.message, type: error.type });
     }
   },
-}
+};
 
 export default stripeController;
