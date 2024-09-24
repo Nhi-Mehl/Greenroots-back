@@ -22,7 +22,6 @@ content-type: application/json
 ###
 POST http://localhost:3000/api/auth/register
 content-type: application/json
-
 {
   "email": "testIgor5@gmail.com",
   "password": "testIgor5",
@@ -40,9 +39,6 @@ DELETE http://localhost:3000/api/users/16
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNjE0Mjg4OSwiZXhwIjoxNzI2MTQ2NDg5fQ.AHQgKNL3FhrRYZe-bzkWvZPAIhrQNjyoi3XShIP5pZs
 Content-type: application/json
 
-{
-    "message": "Account deleted successfully"
-}
 
 ###
 POST http://localhost:3000/api/orders/create_order

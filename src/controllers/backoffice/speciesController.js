@@ -33,7 +33,10 @@ const speciesController = {
     },
 
     async create(req, res) {
-        // TODO 
+        await Species.create(req.body);
+
+        // Une fois l'espèce créée, on redirige l'utilisateur vers la liste des espèces
+        res.redirect('/admin/species');
 
     },
 
@@ -57,8 +60,20 @@ const speciesController = {
         await species.save();
 
 
-        res.render('species/view', { species });
-    }
+        res.redirect('/admin/species');
+    },
+
+    async delete(req, res) {
+
+        // Supprimer l'espèce
+        await Species.destroy({
+            where: {
+                id: req.params.id,
+            },
+        });
+
+        res.redirect('/admin/species');
+    },
 
 };
 

@@ -8,7 +8,7 @@ const stripeController = {
 
     console.log("amount & id : ", amount, id);
     try {
-      const payment = await stripe.paymentIntents.create({
+      const payment = await Stripe.paymentIntents.create({
         amount,
         currency: "EUR",
         description: "GreenRoots",
