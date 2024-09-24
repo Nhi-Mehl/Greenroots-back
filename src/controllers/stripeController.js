@@ -5,10 +5,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET);
 const stripeController = {
   async stripe(req, res) {
     let { amount, id } = req.body;
-
     console.log("amount & id : ", amount, id);
     try {
-      const payment = await Stripe.paymentIntents.create({
+      const payment = await stripe.paymentIntents.create({
         amount,
         currency: "EUR",
         description: "GreenRoots",
