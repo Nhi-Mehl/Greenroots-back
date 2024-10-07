@@ -42,25 +42,24 @@ Content-type: application/json
 
 ###
 POST http://localhost:3000/api/orders/create_order
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNjc4NDk1OSwiZXhwIjoxNzI2Nzg4NTU5fQ.aiaPqG8kVXyNgKkCmo77GMVGkQvA0hH5GycCiUG0rTk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNzg5NzEzNywiZXhwIjoxNzI3OTAwNzM3fQ.cJ_VVVH_7UuDMa_jejNd_bzkO4EziyNtRkAXtBSJsyY
 content-type: application/json
 
 {
-  "amount": 150.5,
+  "amount": 149,
   "orderLine": [
     {
-      "project_tree_id": 3,
-      "quantity": 5,
-      "amount": 30.0
+      "project_tree_id": 4,
+      "quantity": 1,
+      "amount": 49
     },
     {
-      "project_tree_id": 5,
-      "quantity": 1,
-      "amount": 120.5
+      "project_tree_id": 12,
+      "quantity": 2,
+      "amount": 100
     }
   ]
 }
-
 
 ###
 POST http://localhost:3000/api/auth/logout
@@ -78,13 +77,13 @@ Get http://localhost:3000/api/project_trees/highlights
 
 ###
 GET http://localhost:3000/api/orders/16
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNjY2NTU0NSwiZXhwIjoxNzI2NjY5MTQ1fQ.UuSOQDDAgVIzHK7SOLkU5lt_N_2r7cL2vDDEt8JBAi4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNzM4MTMzMywiZXhwIjoxNzI3Mzg0OTMzfQ.nNOi3qnrOMYG-2IUSHJ9IzejuR-LLfhaEBoPR9Zs_MQ
 
 
 
 ###
-GET http://localhost:3000/api/order_line/2
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNjc4NDk1OSwiZXhwIjoxNzI2Nzg4NTU5fQ.aiaPqG8kVXyNgKkCmo77GMVGkQvA0hH5GycCiUG0rTk
+GET http://localhost:3000/api/order_line/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNzM4MTMzMywiZXhwIjoxNzI3Mzg0OTMzfQ.nNOi3qnrOMYG-2IUSHJ9IzejuR-LLfhaEBoPR9Zs_MQ
 
 ###
 PUT http://localhost:3000/api/users/16

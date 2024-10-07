@@ -38,7 +38,6 @@ const orderController = {
   },
 
   // Permet de créer un order avec ses order_lines
-
   async createOrder(req, res) {
     const { amount, orderLine } = req.body;
 
@@ -47,30 +46,45 @@ const orderController = {
       amount: amount,
     });
 
-    // const projecTree = orderLine.forEach(async (line) => {
-    //   const project_tree = await Project_tree.findByPk(line.project_tree_id);
+    // const projectTrees = await Promise.all(
+    //   orderLine.map(async (line) => {
+    //     return await Project_tree.findByPk(line.project_tree_id);
+    //   })
+    // );
 
-    //   return project_tree;
-    // });
+    // console.log("projecTree", projectTrees);
 
-    // console.log("projecTree", projecTree);
+    // const species = await Promise.all(
+    //   projectTrees.map(async (project_tree) => {
+    //     return await Species.findByPk(project_tree.species_id);
+    //   })
+    // );
 
-    // const specie = await Species.findByPk(projecTree.species_id);
-
-    // console.log("specie", specie);
+    // console.log("specie", species);
 
     // console.log("orderLine", orderLine);
 
     const newOrderLines = await Promise.all(
       orderLine.map(async (line) => {
-        const totalAmount = line.quantity * line.amount;
+        // const totalAmount = line.quantity * species[index].price;
 
         return await Order_line.create({
           order_id: newOrder.id,
           project_tree_id: line.project_tree_id,
           quantity: line.quantity,
-          amount: totalAmount,
+          amount: line.amount,
         });
+      })
+    );
+
+    // Réduire la current_quantity dans Project_tree
+    await Promise.all(
+      newOrderLines.map(async (newOrderLine) => {
+        const projectTree = await Project_tree.findByPk(
+          newOrderLine.project_tree_id
+        );
+        projectTree.current_quantity -= newOrderLine.quantity;
+        await projectTree.save();
       })
     );
 
