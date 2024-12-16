@@ -14,6 +14,39 @@ const projectTreeSchema = z.object({
 });
 
 const projectTreeController = {
+  async getOneProjectTreesProject(req, res) {
+    const projectId = req.params.project_id;
+    const projectTrees = await Project_tree.findAll({
+      order: [["id", "ASC"]],
+      where: {
+        project_id: projectId,
+      },
+      include: [
+        {
+          association: "species",
+        },
+      ],
+    });
+    const totalBasicQuantity = projectTrees.reduce((sum, tree) => {
+      return sum + tree.basic_quantity;
+    }, 0);
+    const totalCurrentQuantity = projectTrees.reduce((sum, tree) => {
+      return sum + tree.current_quantity;
+    }, 0);
+    const totalProgress = totalBasicQuantity
+      ? Math.min(
+          ((totalBasicQuantity - totalCurrentQuantity) / totalBasicQuantity) *
+            100,
+          100
+        )
+      : 0;
+
+    return res.status(200).json({
+      progress: totalProgress,
+      trees: projectTrees,
+      totalBasicQuantity,
+    });
+  },
   async getOneProjectTrees(req, res) {
     const projectTrees = await Project_tree.findAll({
       order: [["id", "ASC"]],

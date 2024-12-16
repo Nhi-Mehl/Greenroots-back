@@ -24,7 +24,7 @@ pg_config --version
 
 1. **Clonez le dépôt :**
 
-    Se rendre sur GitHub (https://github.com/O-clock-Pancakes/greenroots-back) et recopier la clé SSH.
+   Se rendre sur GitHub (https://github.com/O-clock-Pancakes/greenroots-back) et recopier la clé SSH.
 
    ```
    git clone clé_SSH_coréspondante_à_mon_projet_backend
@@ -53,53 +53,51 @@ pg_config --version
 
 - **Se connecter au Système (OS) avec l’utilisateur postgres**
 
-   ```sudo -i -u postgres ```
-   ou sur MacOsX
-   ```sudo su postgres```
+  `sudo -i -u postgres `
+  ou sur MacOsX
+  `sudo su postgres`
 
-   => on récupère une invite de commande du type ```postgres@nomDeLaMachine~$```
+  => on récupère une invite de commande du type `postgres@nomDeLaMachine~$`
 
-   - **Se connecter au server PostGres dans le terminal**
-   
-   Une fois connecté au système en tant que postgres, on tape : ```psql```
+  - **Se connecter au server PostGres dans le terminal**
 
-   => on a une invite de commande PostGres : postgres=#
+  Une fois connecté au système en tant que postgres, on tape : `psql`
 
-   - **Créer un utilisateur**
+  => on a une invite de commande PostGres : postgres=#
 
-   ```CREATE ROLE nomDeLutilisateur WITH LOGIN PASSWORD 'leMotDePasse';```
+  - **Créer un utilisateur**
 
-   LOGIN : donne le droit à l’utilisateur de se connecter
+  `CREATE ROLE nomDeLutilisateur WITH LOGIN PASSWORD 'leMotDePasse';`
 
-   PASSWORD 'leMotDePasse' : donne un mot de passe à l’utilisateur.
+  LOGIN : donne le droit à l’utilisateur de se connecter
 
-   - **Créer une base de données**
+  PASSWORD 'leMotDePasse' : donne un mot de passe à l’utilisateur.
 
-   ```CREATE DATABASE nomDeLaBase OWNER nomDeLutilisateur;```
+  - **Créer une base de données**
 
-   on crée une base de données, et on déclare l’utilisateur comme « propriétaire » (donc il a tous les droits) de cette base.
+  `CREATE DATABASE nomDeLaBase OWNER nomDeLutilisateur;`
 
-   - **Se connecter à la base de données nouvellement créée, avec l’utilisateur nouvellement créé**
+  on crée une base de données, et on déclare l’utilisateur comme « propriétaire » (donc il a tous les droits) de cette base.
 
+  - **Se connecter à la base de données nouvellement créée, avec l’utilisateur nouvellement créé**
 
-   Dans un nouveau terminal après avoir entré la commande ```\q``` : 
+  Dans un nouveau terminal après avoir entré la commande `\q` :
 
-   ```psql -U nomDeLutilisateur -d nomDeLaBase```
+  `psql -U nomDeLutilisateur -d nomDeLaBase`
 
-   Note : par défaut, si on ne met pas -d nomDeLaBase, on se connecte automatiquement à la base de données qui porte le même nom que l’utilisateur.
+  Note : par défaut, si on ne met pas -d nomDeLaBase, on se connecte automatiquement à la base de données qui porte le même nom que l’utilisateur.
 
-   - **Exécuter les instructions SQL contenues dans le fichier création de BDD**
+  - **Exécuter les instructions SQL contenues dans le fichier création de BDD**
 
-   Ce fichier crée la structure de la BDD.
+  Ce fichier crée la structure de la BDD.
 
-   ```psql -U nomDeLutilisateur -d nomDeLaBase -f data/create_tables.sql```
+  `psql -U nomDeLutilisateur -d nomDeLaBase -f data/create_tables.sql`
 
-   - **Exécuter les instructions SQL contenues dans le fichier de seeding de la BDD**
+  - **Exécuter les instructions SQL contenues dans le fichier de seeding de la BDD**
 
-   Ce fichier alimente la BDD créée avec des valeurs prédéfinies.
+  Ce fichier alimente la BDD créée avec des valeurs prédéfinies.
 
-   ```psql -U nomDeLutilisateur -d nomDeLaBase -f data/seed_database.sql```
-
+  `psql -U nomDeLutilisateur -d nomDeLaBase -f data/seed_database.sql`
 
 4. **Configurez les variables d'environnement :**
 
@@ -114,7 +112,6 @@ pg_config --version
 
    - `PORT` : Le port sur lequel le serveur va tourner.
    - `DATABASE_URL` : URL de connexion à la base de données PostgreSQL.
-  
 
 ## 🚀 Démarrer le serveur
 
@@ -157,3 +154,8 @@ greenroots-back/
 ## ✨ Contributions
 
 Les contributions sont les bienvenues ! Merci de suivre les règles du projet et de soumettre des pull requests bien documentées.
+
+## Login backoffice
+
+user: testAdmin@example.com
+mdp: testAdmin123

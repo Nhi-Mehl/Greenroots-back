@@ -85,6 +85,10 @@ const orderController = {
         );
         projectTree.current_quantity -= newOrderLine.quantity;
         await projectTree.save();
+        console.log(
+          "projectTree current_quantity after update",
+          projectTree.current_quantity
+        );
       })
     );
 
