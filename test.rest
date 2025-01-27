@@ -36,7 +36,7 @@ content-type: application/json
 
 ###
 DELETE http://localhost:3000/api/users/16
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNjE0Mjg4OSwiZXhwIjoxNzI2MTQ2NDg5fQ.AHQgKNL3FhrRYZe-bzkWvZPAIhrQNjyoi3XShIP5pZs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTczNzk3NTE0MCwiZXhwIjoxNzM3OTc4NzQwfQ.u1lorJiKPrnSbseDzPimZju6BvYKbDUsKX4ZrrQQjXw
 Content-type: application/json
 
 
@@ -69,7 +69,7 @@ content-type: application/json
 
 
 ###
-GET http://localhost:3000/api/users/profil
+GET http://localhost:3000/api/users/profile
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTczNzk3NDMwNSwiZXhwIjoxNzM3OTc3OTA1fQ.lfHPB_kBgvOV_O1rpaORnF7vz48S0bCXltNIQhmAjnk
 
 ###vien

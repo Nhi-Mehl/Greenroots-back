@@ -6,7 +6,7 @@ import isLoggedIn from "../middlewares/isLoggedIn.js";
 const userRouter = Router();
 
 // Permet de récupérer les informations personnelles lorsque l'utilisateurs est sur son compte
-userRouter.get("/profil", isLoggedIn, cw(userController.getOne));
+userRouter.get("/profile", isLoggedIn, cw(userController.getProfile));
 
 // Permet de modifier les informations à un utilisateur sur son compte
 

@@ -18,7 +18,7 @@ const userSchema = z.object({
 
 const userController = {
   // on récupère toutes les informations d'un utilisateur
-  async getOne(req, res) {
+  async getProfile(req, res) {
     // find user by req.user.id
     const user = await User.findByPk(req.user.id, {
       attributes: [
