@@ -11,8 +11,8 @@ POST http://localhost:3000/api/auth/login
 content-type: application/json
 
 {
-    "email": "nhi@gmail.com",
-    "password": "abcd1234"
+    "email": "nhi.mehl@gmail.com",
+    "password": "Seecee5e"
 }
 
 ###
@@ -69,8 +69,8 @@ content-type: application/json
 
 
 ###
-GET http://localhost:3000/api/users/13
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTcyNjQ5ODY1OSwiZXhwIjoxNzI2NTAyMjU5fQ.OKFT9fyY6afS353vqgOtxOZECybVjS4sqH4mWEKurDw
+GET http://localhost:3000/api/users/profil
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTczNzk3NDMwNSwiZXhwIjoxNzM3OTc3OTA1fQ.lfHPB_kBgvOV_O1rpaORnF7vz48S0bCXltNIQhmAjnk
 
 ###vien
 Get http://localhost:3000/api/project_trees/highlights
