@@ -64,11 +64,16 @@ const userController = {
     // on met à jour les données
     await userUpdate.update(result.data);
 
-    // Envoyer une réponse avec l'utilisateur mis à jour
+    // Supprimer le mot de passe de l'objet renvoyé
+    // Convertit l'objet Sequelize en un objet simple. avec plain: true
+    const userWithoutPassword = userUpdate.get({ plain: true });
+    delete userWithoutPassword.password;
+
+    // Envoyer la réponse avec l'utilisateur mis à jour (sans le password)
     return res.json({
       success: true,
       message: "User updated successfully",
-      data: userUpdate,
+      data: userWithoutPassword,
     });
   },
 
