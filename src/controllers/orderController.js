@@ -21,7 +21,7 @@ const orderController = {
       order: [["created_at", "ASC"]],
     });
 
-    console.log(userOrders);
+    console.log("userOrders", userOrders);
 
     userOrders.forEach((order) => {
       if (order.user_id !== req.user.id) {
@@ -31,9 +31,9 @@ const orderController = {
       }
     });
 
-    if (!userOrders || userOrders.length === 0) {
-      return res.status(404).json({ message: "No orders found for this user" });
-    }
+    // if (!userOrders || userOrders.length === 0) {
+    //   return res.status(404).json({ message: "No orders found for this user" });
+    // }
     res.json(userOrders);
   },
 
