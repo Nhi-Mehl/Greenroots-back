@@ -11,8 +11,8 @@ POST http://localhost:3000/api/auth/login
 content-type: application/json
 
 {
-    "email": "nhi.mehl@gmail.com",
-    "password": "Seecee5e"
+    "email": "alix.mehl@gmail.com",
+    "password": "abcd1234"
 }
 
 ###
@@ -22,9 +22,10 @@ content-type: application/json
 ###
 POST http://localhost:3000/api/auth/register
 content-type: application/json
+
 {
-  "email": "testIgor5@gmail.com",
-  "password": "testIgor5",
+  "email": "nhi.mehl@gmail.com",
+  "password": "ABCD1234",
   "first_name": "Les Grands",
   "last_name": "AAA",
   "address": "4 Rue des boulets",
@@ -42,7 +43,7 @@ Content-type: application/json
 
 ###
 POST http://localhost:3000/api/orders/create_order
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNzg5NzEzNywiZXhwIjoxNzI3OTAwNzM3fQ.cJ_VVVH_7UuDMa_jejNd_bzkO4EziyNtRkAXtBSJsyY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsImlhdCI6MTczOTE5NjA0NiwiZXhwIjoxNzM5MTk5NjQ2fQ.RmNao9RWFoLm84aYxvYrp_KVmetWg9GOf3DJBkAKXmo
 content-type: application/json
 
 {
@@ -76,14 +77,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6M
 Get http://localhost:3000/api/project_trees/highlights
 
 ###
-GET http://localhost:3000/api/orders/16
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNzM4MTMzMywiZXhwIjoxNzI3Mzg0OTMzfQ.nNOi3qnrOMYG-2IUSHJ9IzejuR-LLfhaEBoPR9Zs_MQ
+GET http://localhost:3000/api/orders/45
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsImlhdCI6MTczOTE5ODQzNCwiZXhwIjoxNzM5MjAyMDM0fQ.dNx1xUrFCMeEFDfUr6QzCMFeNBwF-cbr7KKhyFqKHHs
 
 
 
 ###
-GET http://localhost:3000/api/order_line/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcyNzM4MTMzMywiZXhwIjoxNzI3Mzg0OTMzfQ.nNOi3qnrOMYG-2IUSHJ9IzejuR-LLfhaEBoPR9Zs_MQ
+GET http://localhost:3000/api/order_line/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsImlhdCI6MTczOTQ1NzcwOCwiZXhwIjoxNzM5NDYxMzA4fQ.gnZ4eQJGdiMSMCJoe-v2hUlNrvH213JtZnGaJSY5VGY
 
 ###
 PUT http://localhost:3000/api/users/14
@@ -100,3 +101,8 @@ content-type: application/json
   "phone_number": "0123456789",
   "email": "nhi@gmail.com"
 }
+
+###
+GET http://localhost:3000/api/project_trees/project/1
+
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsImlhdCI6MTczOTk5Nzc0OSwiZXhwIjoxNzQwMDAxMzQ5fQ.IifhhRoG9DNEDpSeYIcGW9zMTcKXU9bfEVBg4bllHwg

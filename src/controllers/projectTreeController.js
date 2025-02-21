@@ -35,8 +35,10 @@ const projectTreeController = {
     }, 0);
     const totalProgress = totalBasicQuantity
       ? Math.min(
-          ((totalBasicQuantity - totalCurrentQuantity) / totalBasicQuantity) *
-            100,
+          Math.round(
+            ((totalBasicQuantity - totalCurrentQuantity) / totalBasicQuantity) *
+              100
+          ),
           100
         )
       : 0;
@@ -45,6 +47,7 @@ const projectTreeController = {
       progress: totalProgress,
       trees: projectTrees,
       totalBasicQuantity,
+      totalCurrentQuantity,
     });
   },
   async getOneProjectTrees(req, res) {
