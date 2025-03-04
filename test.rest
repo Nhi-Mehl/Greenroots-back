@@ -106,3 +106,22 @@ content-type: application/json
 GET http://localhost:3000/api/project_trees/project/1
 
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsImlhdCI6MTczOTk5Nzc0OSwiZXhwIjoxNzQwMDAxMzQ5fQ.IifhhRoG9DNEDpSeYIcGW9zMTcKXU9bfEVBg4bllHwg
+
+###
+POST http://localhost:3000/api/stripe/create_payment_intent
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsImlhdCI6MTc0MTAwNzU3MiwiZXhwIjoxNzQxMDExMTcyfQ.5TtODJckAYoIcT4Q1IVxjJkr5EbYcGWGB4x1B1ifLa0
+Content-Type: application/json
+
+{
+  "amount": 100000
+}
+
+###
+POST http://localhost:3000/api/stripe/charge
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsImlhdCI6MTc0MTAwNzU3MiwiZXhwIjoxNzQxMDExMTcyfQ.5TtODJckAYoIcT4Q1IVxjJkr5EbYcGWGB4x1B1ifLa0
+Content-Type: application/json
+
+{
+  "amount": 100000,
+  "id": "pm_1Hv3ZvKbJ6Zzv3J9Zz5Zzv3J",
+}

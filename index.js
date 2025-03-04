@@ -1,7 +1,6 @@
 import express from "express";
 import session from "express-session";
 import cors from "cors";
-import Stripe from "stripe";
 
 import router from "./src/router/indexRouter.js";
 import backOfficeRouter from "./src/router/backoffice/indexRouter.js";
