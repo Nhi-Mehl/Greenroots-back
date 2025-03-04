@@ -19,7 +19,6 @@ const userSchema = z.object({
 });
 
 const authController = {
-
   // création de l'utilisateur
 
   async create(req, res) {
@@ -47,7 +46,6 @@ const authController = {
       phone_number,
     } = result.data;
 
-
     // On vérifie si l'utilisateur existe déjà
     const userExists = await User.findOne({ where: { email } });
 
@@ -55,7 +53,7 @@ const authController = {
     if (userExists) {
       return res.status(409).json({ message: "User already exists" });
     }
-    
+
     // On hâche le mot de passe
     const hashedPassword = Scrypt.hash(password);
 
@@ -81,11 +79,10 @@ const authController = {
     });
   },
 
-
-  // connexion 
+  // connexion
   async login(req, res) {
     const result = userSchema.partial().safeParse(req.body);
-    console.log(result);
+    console.log("login resul", result);
 
     // Si le resultat n'est pas correct, on renvoie une erreur 400
     if (!result.success) {
@@ -106,7 +103,6 @@ const authController = {
       throw new NotFoundError("User not found");
     }
 
-
     // Si on a un utilisateur, on teste si le mot de passe est valide
     const validPwd = Scrypt.verify(password, foundUser.password);
 
@@ -123,18 +119,19 @@ const authController = {
     return res.json({ accessToken });
   },
 
-
   // déconnexion on ajoute le token dans la table blacklist_token
   async logout(req, res) {
-    const token = req.headers.authorization ? req.headers.authorization.slice(7) : null;
+    const token = req.headers.authorization
+      ? req.headers.authorization.slice(7)
+      : null;
 
     if (!token) {
-      return res.status(400).json({ message: 'No token provided' });
+      return res.status(400).json({ message: "No token provided" });
     }
 
     try {
       // Décoder le token pour obtenir son expiration
-      const decoded = jwt.decode(token);  // Utilise decode ici, pas verify
+      const decoded = jwt.decode(token); // Utilise decode ici, pas verify
 
       // Stocker le token et son expiration dans la table blacklisted_token
       await Blacklisted_token.create({
@@ -142,13 +139,13 @@ const authController = {
         expiry: new Date(decoded.exp * 1000),
       });
 
-      return res.status(200).json({ message: 'Logout successful, token blacklisted' });
+      return res
+        .status(200)
+        .json({ message: "Logout successful, token blacklisted" });
     } catch (error) {
-      return res.status(500).json({ message: 'Failed to blacklist token' });
+      return res.status(500).json({ message: "Failed to blacklist token" });
     }
   },
-
-
 };
 
 export default authController;

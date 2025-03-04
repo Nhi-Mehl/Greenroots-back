@@ -1,9 +1,11 @@
 import express from "express";
 import session from "express-session";
+import cors from "cors";
+import Stripe from "stripe";
+
 import router from "./src/router/indexRouter.js";
 import backOfficeRouter from "./src/router/backoffice/indexRouter.js";
 import errorHandler from "./src/middlewares/errorHandler.js";
-import cors from "cors";
 
 const app = express();
 

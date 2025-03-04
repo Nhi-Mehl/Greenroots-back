@@ -31,38 +31,17 @@ const orderController = {
       }
     });
 
-    // if (!userOrders || userOrders.length === 0) {
-    //   return res.status(404).json({ message: "No orders found for this user" });
-    // }
     res.json(userOrders);
   },
 
   // Permet de créer un order avec ses order_lines
   async createOrder(req, res) {
-    const { amount, orderLine } = req.body;
+    const { totalAmountOrder, orderLine } = req.body;
 
     const newOrder = await Order.create({
       user_id: req.user.id,
-      amount: amount,
+      amount: totalAmountOrder,
     });
-
-    // const projectTrees = await Promise.all(
-    //   orderLine.map(async (line) => {
-    //     return await Project_tree.findByPk(line.project_tree_id);
-    //   })
-    // );
-
-    // console.log("projecTree", projectTrees);
-
-    // const species = await Promise.all(
-    //   projectTrees.map(async (project_tree) => {
-    //     return await Species.findByPk(project_tree.species_id);
-    //   })
-    // );
-
-    // console.log("specie", species);
-
-    // console.log("orderLine", orderLine);
 
     const newOrderLines = await Promise.all(
       orderLine.map(async (line) => {
