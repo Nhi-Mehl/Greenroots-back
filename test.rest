@@ -1,0 +1,127 @@
+POST http://localhost:3000/api/auth/login
+content-type: application/json
+
+{
+    "email": "testIgor5@gmail.com",
+    "password": "testIgor5"
+}
+
+###
+POST http://localhost:3000/api/auth/login
+content-type: application/json
+
+{
+    "email": "alix.mehl@gmail.com",
+    "password": "abcd1234"
+}
+
+###
+POST http://localhost:3000/api/auth/register
+content-type: application/json
+
+###
+POST http://localhost:3000/api/auth/register
+content-type: application/json
+
+{
+  "email": "nhi.mehl@gmail.com",
+  "password": "ABCD1234",
+  "first_name": "Les Grands",
+  "last_name": "AAA",
+  "address": "4 Rue des boulets",
+  "zip_code": "75001",
+  "country": "france",
+  "city": "Paris",
+  "phone_number": "0173004567"
+}
+
+###
+DELETE http://localhost:3000/api/users/16
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTczNzk3NTE0MCwiZXhwIjoxNzM3OTc4NzQwfQ.u1lorJiKPrnSbseDzPimZju6BvYKbDUsKX4ZrrQQjXw
+Content-type: application/json
+
+
+###
+POST http://localhost:3000/api/orders/create_order
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsImlhdCI6MTczOTE5NjA0NiwiZXhwIjoxNzM5MTk5NjQ2fQ.RmNao9RWFoLm84aYxvYrp_KVmetWg9GOf3DJBkAKXmo
+content-type: application/json
+
+{
+  "amount": 149,
+  "orderLine": [
+    {
+      "project_tree_id": 4,
+      "quantity": 1,
+      "amount": 49
+    },
+    {
+      "project_tree_id": 12,
+      "quantity": 2,
+      "amount": 100
+    }
+  ]
+}
+
+###
+POST http://localhost:3000/api/auth/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTcyNjQ5ODYwMSwiZXhwIjoxNzI2NTAyMjAxfQ.4MhmH674DahScGnT-wGnMtAeh3IjWoOW9dAm9cuEVS4
+content-type: application/json
+
+
+
+###
+GET http://localhost:3000/api/users/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTczNzk3NDMwNSwiZXhwIjoxNzM3OTc3OTA1fQ.lfHPB_kBgvOV_O1rpaORnF7vz48S0bCXltNIQhmAjnk
+
+###vien
+Get http://localhost:3000/api/project_trees/highlights
+
+###
+GET http://localhost:3000/api/orders/45
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsImlhdCI6MTczOTE5ODQzNCwiZXhwIjoxNzM5MjAyMDM0fQ.dNx1xUrFCMeEFDfUr6QzCMFeNBwF-cbr7KKhyFqKHHs
+
+
+
+###
+GET http://localhost:3000/api/order_line/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsImlhdCI6MTczOTQ1NzcwOCwiZXhwIjoxNzM5NDYxMzA4fQ.gnZ4eQJGdiMSMCJoe-v2hUlNrvH213JtZnGaJSY5VGY
+
+###
+PUT http://localhost:3000/api/users/14
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTczODI0NTM5MSwiZXhwIjoxNzM4MjQ4OTkxfQ.DGsipIv1qahyhfhi0VEEXCG1XKaI7xM2TfZLNtN54os
+content-type: application/json
+
+{
+  "first_name": "nhi",
+  "last_name": "vien",
+  "address": "123 blablabla",
+  "zip_code": "67000",
+  "country": "france",
+  "city": "strasbourg",
+  "phone_number": "0123456789",
+  "email": "nhi@gmail.com"
+}
+
+###
+GET http://localhost:3000/api/project_trees/project/1
+
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsImlhdCI6MTczOTk5Nzc0OSwiZXhwIjoxNzQwMDAxMzQ5fQ.IifhhRoG9DNEDpSeYIcGW9zMTcKXU9bfEVBg4bllHwg
+
+###
+POST http://localhost:3000/api/stripe/create_payment_intent
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsImlhdCI6MTc0MTAwNzU3MiwiZXhwIjoxNzQxMDExMTcyfQ.5TtODJckAYoIcT4Q1IVxjJkr5EbYcGWGB4x1B1ifLa0
+Content-Type: application/json
+
+{
+  "amount": 100000
+}
+
+###
+POST http://localhost:3000/api/stripe/charge
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsImlhdCI6MTc0MTAwNzU3MiwiZXhwIjoxNzQxMDExMTcyfQ.5TtODJckAYoIcT4Q1IVxjJkr5EbYcGWGB4x1B1ifLa0
+Content-Type: application/json
+
+{
+  "amount": 100000,
+  "id": "pm_1Hv3ZvKbJ6Zzv3J9Zz5Zzv3J",
+}

@@ -1,0 +1,64 @@
+<%- include('../partials/headerLogout') %>
+
+<!-- Main Content -->
+<main>
+  <form
+    action="/admin/species/<%= species.id %>"
+    method="POST"
+    class="edit-form"
+  >
+    <div class="input-group">
+      <label for="name">Name</label>
+      <input value="<%= species.name %>" name="name" />
+    </div>
+
+    <div class="input-group">
+      <label for="scientific_name">Scientific name</label>
+      <textarea name="scientific_name" id="scientific_name" cols="30" rows="10">
+<%= species.scientific_name %></textarea
+      >
+    </div>
+
+    <div class="input-group">
+      <label for="description">Description</label>
+      <textarea name="description" id="description" cols="30" rows="10">
+<%= species.description %></textarea
+      >
+    </div>
+
+    <div class="input-group">
+      <label for="price">Price</label>
+      <textarea name="price" id="price" cols="30" rows="10">
+<%= species.price %></textarea
+      >
+    </div>
+
+    <div class="input-group">
+      <label for="picture">Picture</label>
+      <textarea name="picture" id="picture" cols="30" rows="10">
+<%= species.picture %></textarea
+      >
+    </div>
+
+    <div class="input-group">
+      <label for="co2_compensation">CO2 compensation</label>
+      <textarea
+        name="co2_compensation"
+        id="co2_compensation"
+        cols="30"
+        rows="10"
+      >
+<%= species.co2_compensation %></textarea
+      >
+    </div>
+
+    <button type="submit">Mettre à jour l'espèce</button>
+    <a href="/admin/species/<%= species.id %>/delete">
+      Supprimer cette espèce
+    </a>
+  </form>
+</main>
+
+<!-- Footer -->
+
+<%- include('../partials/footer') %>

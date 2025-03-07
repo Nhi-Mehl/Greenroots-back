@@ -1,0 +1,101 @@
+<%- include('../partials/headerLogout') %>
+
+<!-- Main content -->
+<main>
+  <form action="/admin/projects/new_project" method="POST" class="edit-form">
+    
+    <!-- Informations du projet -->
+    <div class="input-group">
+      <label for="name">Name</label>
+      <input name="name" required>
+    </div>
+
+    <div class="input-group">
+      <label for="description">Description</label>
+      <textarea name="description" id="description" cols="30" rows="10" required></textarea>
+    </div>
+
+    <div class="input-group">
+      <label for="picture">Picture</label>
+      <input name="picture" required>
+    </div>
+
+    <div class="input-group">
+      <label for="status">Status</label>
+      <input name="status" required>
+    </div>
+
+    <div class="input-group">
+      <label for="city">City</label>
+      <input name="city" required>
+    </div>
+
+    <div class="input-group">
+      <label for="country">Country</label>
+      <input name="country" required>
+    </div>
+
+    <div class="input-group">
+      <label for="continent">Continent</label>
+      <input name="continent" required>
+    </div>
+
+    <!-- Section Arbres du Projet -->
+    <div class="input-group">
+      <label for="trees">Arbres du projet</label>
+      <button id="add-species" type="button">Ajouter une espèce</button>
+    </div>
+
+    <!-- Conteneur des espèces dynamiques -->
+    <div id="species-container"></div>
+
+    <button type="submit">Créer un projet</button>  
+  </form>
+</main>
+
+<!-- Template pour ajouter dynamiquement une espèce -->
+<template id="new-species">
+  <div class="input-group tree-entry">
+    <hr />
+    <label for="species">Espèce</label>
+    <select name="trees[species_id][]" required>
+      <option value="">Sélectionner l'espèce</option>
+      <% species.forEach(spe => { %>
+        <option value="<%= spe.id %>"><%= spe.name %></option>
+      <% }) %>
+    </select>
+    
+    <label for="quantity">Quantité de base</label>
+    <input type="number" name="trees[basic_quantity][]" value="0" min="0" required>
+    
+    <label for="quantity">Quantité actuelle</label>
+    <input type="number" name="trees[current_quantity][]" value="0" min="0" required>
+    
+    <a href="#" class="delete-tree">Supprimer</a>
+  </div>
+</template>
+
+<script>
+  // Gestion du bouton pour ajouter une nouvelle espèce
+  const addSpeciesBtn = document.getElementById('add-species');
+  const speciesContainer = document.getElementById('species-container');
+  
+  addSpeciesBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    
+    const template = document.getElementById('new-species');
+    const newSpecies = template.content.cloneNode(true);
+    
+    // Gestion du bouton supprimer
+    const deleteBtn = newSpecies.querySelector('.delete-tree');
+    deleteBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.target.closest('.tree-entry').remove();
+    });
+    
+    // Ajouter le nouvel élément avant le bouton
+    speciesContainer.appendChild(newSpecies);
+  });
+</script>
+
+<%- include('../partials/footer') %>
