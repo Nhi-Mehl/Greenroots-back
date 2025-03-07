@@ -20,10 +20,12 @@
     "zod": "^3.23.8"
   },
   "scripts": {
+    "start": "node index.js",
     "dev": "node --watch index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "db:reset": "psql -U greenroots -d greenroots -f data/create_tables.sql",
-    "db:create": "psql -U greenroots -d greenroots -f data/seed_database.sql"
+    "db:create": "psql -U greenroots -d greenroots -f data/create_tables.sql",
+    "db:seed": "psql -U greenroots -d greenroots -f data/seed_database.sql",
+    "db:reset": "npm run db:create && npm run db:seed"
   },
   "keywords": [],
   "author": "",
