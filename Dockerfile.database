@@ -4,6 +4,11 @@ FROM postgres:16
 # Repertoire de travail dans le conteneur
 WORKDIR /etc/postgresql
 
+# Variables d'environnement
+ENV POSTGRES_USER=${POSTGRES_USER}
+ENV POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+ENV POSTGRES_DB=${POSTGRES_DB}
+
 # Ajout des scripts d'initialisation
 # @see: https://hub.docker.com/_/postgres
 COPY ./data/create_tables.sql /docker-entrypoint-initdb.d/create_table.sql
