@@ -1,0 +1,13 @@
+# On part d'une image officielle de PostgreSQL
+FROM postgres:16
+
+# Repertoire de travail dans le conteneur
+WORKDIR /etc/postgresql
+
+# Ajout des scripts d'initialisation
+# @see: https://hub.docker.com/_/postgres
+COPY ./data/create_tables.sql /docker-entrypoint-initdb.d/create_tables.sql
+COPY ./data/seed_database.sql /docker-entrypoint-initdb.d/seed_database.sql
+
+# Documenter le port 5432 du conteneur 
+EXPOSE 5432
