@@ -1,17 +1,41 @@
-# Utilisation d'une image légère
-FROM node:22-alpine
+# Étape 1 : Base commune
+FROM node:22-alpine AS base
 
 # Définir un utilisateur non-root pour plus de sécurité
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
-# Définir le répertoire de travail
 WORKDIR /app
+
+# Copier package.json et package-lock.json séparément pour optimiser le cache Docker
+COPY package.json package-lock.json ./
+
+# Étape 2 : Développement avec hot reload
+FROM base AS dev
+
+# Installer toutes les dépendances (dev + prod)
+RUN npm install
+
+# Copier tout le code source
+COPY . .
+
+# Donner les droits au dossier à l'utilisateur non-root
+RUN chown -R appuser:appgroup /app
+
+# Exécuter en tant qu'utilisateur non-root
+USER appuser
+
+# Exposer le port pour l’API
+EXPOSE 3000
+
+# Lancer l'application en mode développement avec Nodemon
+CMD ["npm", "run", "dev"]
+
+
+# Étape 3 : Production (serveur optimisé)
+FROM base AS prod
 
 # Définir l'environnement en production
 ENV NODE_ENV=production
-
-# Copier uniquement les fichiers nécessaires
-COPY package.json package-lock.json ./
 
 # Installer uniquement les dépendances de production
 RUN npm ci --only=production
@@ -25,7 +49,7 @@ RUN chown -R appuser:appgroup /app
 # Exécuter en tant qu'utilisateur non-root
 USER appuser
 
-# Exposer le port 3000
+# Exposer le port
 EXPOSE 3000
 
 # Démarrer l'application en production
