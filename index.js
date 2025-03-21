@@ -27,9 +27,7 @@ app.use(
 );
 
 const allowedOrigins =
-  process.env.NODE_ENV === "production"
-    ? ["http://planttreeswith.me", "https://planttreeswith.me"]
-    : "*"; // En mode dev, autorise localhost
+  process.env.NODE_ENV === "production" ? "http://planttreeswith.me" : "*"; // En mode dev, autorise localhost
 
 const corsOptions = {
   origin: allowedOrigins,
@@ -37,8 +35,6 @@ const corsOptions = {
   credentials: true,
   allowedHeaders: "Content-Type,Authorization",
 };
-
-console.log("allowedOrigins", allowedOrigins);
 
 app.use(cors(corsOptions));
 
