@@ -26,7 +26,21 @@ app.use(
   })
 );
 
-app.use(cors("*"));
+const allowedOrigins =
+  process.env.NODE_ENV === "production"
+    ? ["http://planttreeswith.me", "https://planttreeswith.me"]
+    : "*"; // En mode dev, autorise localhost
+
+const corsOptions = {
+  origin: allowedOrigins,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  allowedHeaders: "Content-Type,Authorization",
+};
+
+console.log("allowedOrigins", allowedOrigins);
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
@@ -36,6 +50,7 @@ app.use("/admin", backOfficeRouter);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
-  console.log("Server is running on port http://localhost:3000");
+  console.log(`Server is running on port ${PORT}`);
 });
