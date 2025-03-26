@@ -23,14 +23,15 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ${DOCKER_USERNAME}/greenroots-back:$GITHUB_SHA .
-          docker push ${DOCKER_USERNAME}/greenroots-back:$GITHUB_SHA
+          echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}"  # Debug
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/greenroots-back:$GITHUB_SHA .
+          docker push ${{ secrets.DOCKER_USERNAME }}/greenroots-back:$GITHUB_SHA
 
       - name: Deploy to DigitalOcean
         run: |
           ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} deploy@${{ secrets.DIGITALOCEAN_IP }} << 'EOF'
             cd /home/deploy/greenroots
-            docker pull ${DOCKER_USERNAME}/greenroots-back:$GITHUB_SHA
+            docker pull ${{ secrets.DOCKER_USERNAME }}/greenroots-back:$GITHUB_SHA
             docker-compose down
             docker-compose up -d
           EOF
